@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ExittrackingComponent } from '../app/components/exittracking/exittracking.component';
+import { FormsModule } from '@angular/forms';
 import { AdmindashboardComponent } from './components/admindashboard/admindashboard.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
@@ -27,6 +28,7 @@ import { HeaderComponent } from './components/header/header.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
   ],

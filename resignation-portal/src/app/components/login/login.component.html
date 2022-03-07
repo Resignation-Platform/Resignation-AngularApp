@@ -11,12 +11,13 @@
                     <h2>Log In</h2>
                 </div>
                 <div class="row">
-                    <form control="" class="form-group">
+                    <form control="" class="form-group" #loginForm="ngForm" (submit)="loginForm.valid && onSubmit()">
                         <div class="row">
-                            <input type="email" name="emailid" id="emailid" class="form__input" placeholder="Email Id" required>
+                            <input type="email" name="emailid" id="emailid" class="form__input" #emailid = "ngModel" [ngClass]="{'is-invalid' : loginForm.submitted && emailid.invalid}" placeholder="Email Id" [(ngModel)] = "model.emailid" required>
+                            <span class="invalid-feedback">Email Id can't be blank.</span>
                         </div>
                         <div class="row">
-                            <button class="btn" [routerLink]="['/dashboard']">Submit</button>
+                            <button class="btn" type="submit">Submit</button>
                             <!-- <input type="submit" class="btn" [routerLink]="['/dashboard']"> -->
                         </div>
                     </form>
