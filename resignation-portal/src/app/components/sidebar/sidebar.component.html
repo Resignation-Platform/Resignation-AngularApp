@@ -1,36 +1,38 @@
-<div class="sidebar" [ngClass]="{active:isSideBarActivated===true}">
+<div class="sidebar" [ngClass]="{ active: isSideBarActivated === true }">
   <div class="logo_content">
-
-    <a (click)="onExpandSidebar()"><i class="bx bx-menu" id="btn" ></i></a>
+    <a (click)="onExpandSidebar()"><i class="bx bx-menu" id="btn"></i></a>
   </div>
   <ul class="nav_list">
-    <li>
-      <a href="">
-        <i class="bx bxs-dashboard" ></i>
-        <span class="links_name">Dashboard</span>
+    <li title="Dashboard">
+      <a [routerLink]="'/dashboard'">
+        <i class="bx bxs-dashboard"></i>
+        <span
+          class="d-inline-block"
+          tabindex="0"
+          data-bs-toggle="tooltip"
+          title="Disabled tooltip"
+        >
+          Dashboard</span
+        >
       </a>
-      <!-- <span class="tooltip">Dashboard</span> -->
     </li>
-    <li>
+    <li title="Approvals">
       <a href="">
-        <i class='bx bx-user'></i>
+        <i class="fa-solid fa-users"></i>
         <span class="links_name">Approvals</span>
       </a>
-      <!-- <span class="tooltip">Approvals</span> -->
     </li>
-    <li>
-      <a href="">
-        <i class='bx bx-user'></i>
-        <span class="links_name">Exit</span>
+    <li title="Exit-Tracker">
+      <a [routerLink]="'/exit-tracking'">
+        <i class="bx bx-exit"></i>
+        <span [routerLink]="'/exit-tracking'" class="links_name">Exit</span>
       </a>
-      <!-- <span class="tooltip">Exit</span> -->
     </li>
-    <li>
+    <li title="Help">
       <a href="">
-        <i class='bx bx-help-circle'></i>
+        <i class="bx bx-help-circle"></i>
         <span class="links_name">Help</span>
       </a>
-      <!-- <span class="tooltip">Help</span> -->
     </li>
   </ul>
   <div class="company_logo">
@@ -38,6 +40,5 @@
       <div class="hashedin_title hashedin">Hashedin</div>
       <div class="hashedin_title deloitte">By Deloitte</div>
     </div>
-
   </div>
 </div>

@@ -1,7 +1,7 @@
 .exittracking{
   width: 80%;
   margin: 100px;
-  margin-left: 120px;
+  margin-left: 100px;
 
 }
 
@@ -50,7 +50,7 @@ ul li .fa-circle-xmark::after{
   width: 150px;
   position: relative;
   justify-content: space-between;
-  margin-left: 82px;
+  margin-left: 70px;
   margin-top: 20px;
 }
 .clearance-tracking{
@@ -74,8 +74,15 @@ ul li .fa-circle-xmark::after{
 
   box-shadow:     20px -20px 71px #bcbcbc,
   -20px 20px 71px #ffffff;
+  transition: all 0.4s ease-in-out;
 
-
+}
+.clearance-tracking__dept:hover{
+  transform: scale(1.005);
+  box-shadow: var(--dark-shadow);
+  border-top: 1px solid #f51e49;
+  border-right: 1px solid #f51e49;
+  border-bottom: 1px solid #f51e49;
 }
 
  span{
