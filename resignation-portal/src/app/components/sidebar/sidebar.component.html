@@ -5,23 +5,25 @@
   </div>
   <ul class="nav_list">
     <li>
-      <a href="">
+      <a [routerLink]="'/dashboard'">
         <i class="bx bxs-dashboard" ></i>
-        <span class="links_name">Dashboard</span>
+       <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="Disabled tooltip">
+
+       Dashboard</span>
       </a>
       <!-- <span class="tooltip">Dashboard</span> -->
     </li>
     <li>
       <a href="">
-        <i class='bx bx-user'></i>
+        <i class="fa-solid fa-users"></i>
         <span class="links_name">Approvals</span>
       </a>
       <!-- <span class="tooltip">Approvals</span> -->
     </li>
     <li>
-      <a href="">
-        <i class='bx bx-user'></i>
-        <span class="links_name">Exit</span>
+      <a [routerLink]="'/exit-tracking'">
+        <i class='bx bx-exit'></i>
+        <span [routerLink]="'/exit-tracking'" class="links_name">Exit</span>
       </a>
       <!-- <span class="tooltip">Exit</span> -->
     </li>

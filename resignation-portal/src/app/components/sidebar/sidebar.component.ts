@@ -7,7 +7,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  isSideBarActivated:boolean=false;
+  isSideBarActivated:boolean=true;
   constructor() { }
 
   ngOnInit(): void {

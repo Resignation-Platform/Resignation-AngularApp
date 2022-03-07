@@ -3,14 +3,16 @@
 }
 .dash-board {
   padding: 1rem 2rem;
-  background: #efefef;
+  margin-left: 100px;
+  /* background: #efefef; */
 }
 
 .side-detail-bar {
-  height: 85vh;
+  height: 90vh;
   padding: 0 1rem;
-  background: linear-gradient(#ff5276, #fe8d79);
+  background: linear-gradient(330deg,#ff5276, #fe8d79);
   border-radius: var(--radius);
+  opacity: 0.75;
 }
 
 .profile-icon-container {
@@ -34,7 +36,7 @@
   text-align: center;
   text-transform: capitalize;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.75rem;
   color: var(--clr-white);
   margin-bottom: 0.3rem;
 }
@@ -44,6 +46,7 @@
   text-transform: capitalize;
   color: var(--clr-white);
   font-weight: 500;
+  font-size: 0.75rem;
 }
 
 .employee-position {
@@ -51,12 +54,14 @@
   text-transform: capitalize;
   color: var(--clr-white);
   font-weight: 500;
+  font-size: 0.75rem;
 }
 
 .employee-mail {
   text-align: center;
   color: var(--clr-white);
   font-weight: 500;
+  font-size: 0.75rem;
 }
 
 .break-line {
@@ -67,6 +72,7 @@
 
 .quick-links {
   margin-top: 1rem;
+  font-size: 0.75rem;
 }
 
 .link-title {
@@ -97,7 +103,7 @@
 }
 
 .card-container {
-  height: 78vh;
+  height: 83vh;
   background: var(--clr-white);
   border-radius: var(--radius);
   padding: 1rem;
