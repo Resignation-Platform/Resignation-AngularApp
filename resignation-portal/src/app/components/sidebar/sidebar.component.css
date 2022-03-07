@@ -1,0 +1,136 @@
+.sidebar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 80px;
+
+  background: linear-gradient(330deg, #fe8d79, #ff5276);
+  padding: 6px 14px;
+
+}
+.sidebar.active{
+  width: 180px;
+}
+.sidebar #btn{
+  position: absolute;
+  color: #fff;
+  left: 62%;
+    top: 10px;
+    font-size: 26px;
+  height: 50px;
+  width: 50px;
+  text-align: center;
+  line-height: 50px;
+  transform: translateX(-50%);
+}
+.sidebar.active #btn{
+  left: 30%;
+}
+
+.sidebar ul{
+  margin-top: 50px;
+}
+.sidebar ul li{
+  position: relative;
+  height: 50px;
+  width: 100%;
+  margin: 0 -21px;
+  list-style: none;
+}
+
+/* .sidebar ul li .tooltip{
+  position: absolute;
+  height: 35px;
+  left: 122px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 122px;
+  line-height: 35px;
+  text-align: center;
+  background:#f5b0a4;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+} */
+.sidebar ul li a{
+  color:#fff;
+
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+.sidebar ul li span{
+  opacity: 0;
+}
+.sidebar.active ul li span{
+  opacity: 1;
+}
+.sidebar ul li a:hover{
+  color: #fff;
+  background: #f5b0a4;
+  opacity: 0.5;
+}
+.sidebar ul li a i{
+  height: 50px;
+  min-width: 50px;
+
+  border-radius: 12px;
+  line-height: 50px;
+  text-align: center;
+}
+
+i{
+  font-size: 20px;
+}
+
+.sidebar .company_logo{
+  position: absolute;
+  color: #fff;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: -160px;
+  transform: rotate(-90deg);
+  display: flex;
+}
+.sidebar.active .company_logo{
+
+  transform: rotate(0deg);
+
+}
+.sidebar .company_logo .title{
+  position: relative;
+  padding:10px 6px;
+  height: 75px;
+
+}
+.sidebar.active .company_logo .title .hashedin_title{
+  display: flex;
+  align-items: center;
+
+}
+
+/* .sidebar .company_logo .title .hashedin_title{
+  display: flex;
+  align-items: center;
+
+} */
+.hashedin{
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.sidebar.active  .deloitte{
+  font-size: 14px;
+  opacity: 0.75;
+}
+.deloitte{
+  font-size: 14px;
+  opacity: 0.75;
+}
+.title .hashedin_title{
+  margin-left: 40px;
+
+
+
+}

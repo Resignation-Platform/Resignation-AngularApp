@@ -63,17 +63,21 @@ ul li .fa-circle-xmark::after{
   border-radius: 15px;
 
 
+
 }
 
-.clearance-tracking__dept,.clearance-tracking__dept{
+.clearance-tracking__dept{
   width: 50%;
   height: 150px;
   border-radius: 20px;
-  box-shadow:    -22px 22px 45px #d2d1d1,
-  22px -22px 45px #ffffff;
+  background: linear-gradient(330deg, #fe8d79, #ff5276);
+
+  box-shadow:     20px -20px 71px #bcbcbc,
+  -20px 20px 71px #ffffff;
 
 
 }
+
  span{
   text-align: center;
   padding: 39px;
@@ -100,6 +104,9 @@ ul li .fa-circle-check::after{
   left: 0;
   top: 10px;
   z-index: -10;
+}
+.clearance-tracking__dept span p{
+  color: #fff;
 }
  /* li:nth-child(even) .fa-circle-xmark{
 

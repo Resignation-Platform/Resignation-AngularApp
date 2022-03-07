@@ -1,0 +1,14 @@
+/* .main-section{
+display: flex;
+flex-direction:row
+}
+.head{
+  width: 20%;
+} */
+
+.home-content{
+  position: absolute;
+  height: 100%;
+  width: calc(100%-180px);
+  left: 70px;
+}

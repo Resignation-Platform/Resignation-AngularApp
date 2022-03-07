@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ExittrackingComponent } from '../app/components/exittracking/exittracking.component';
 import { AdmindashboardComponent } from './components/admindashboard/admindashboard.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ExittrackingComponent,
-    AdmindashboardComponent
+    AdmindashboardComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
