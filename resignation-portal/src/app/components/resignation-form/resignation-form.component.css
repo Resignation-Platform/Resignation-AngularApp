@@ -1,0 +1,52 @@
+.header {
+  height: 10vh;
+}
+
+.resignation-form {
+  background: var(--clr-white);
+  width: 90%;
+  border-radius: var(--radius);
+}
+
+.form-title {
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.btn {
+  text-align: right;
+  display: block;
+}
+
+.btn-submit {
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.25rem 1rem;
+  background: #ff5276;
+  color: var(--clr-white);
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.invalid-form-control {
+  color: #ff5276;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.btn-submit:disabled {
+  background: var(--clr-grey-5);
+  color: var(--clr-white);
+  font-weight: 600;
+}

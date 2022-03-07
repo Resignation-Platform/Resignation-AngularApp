@@ -1,0 +1,176 @@
+<header class="header">Header</header>
+<div class="row">
+  <div class="col-lg-1">side bar</div>
+  <div class="col-lg-11 resignation-form">
+    <p class="form-title">enter details</p>
+    <form [formGroup]="resignationForm">
+      <div class="row">
+        <div class="col-lg-4 form-group">
+          <label class="form-label" for="name">Name: </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-control"
+            formControlName="name"
+          />
+        </div>
+        <div class="col-lg-4 form-group">
+          <label class="form-label" for="id">Employee Id: </label>
+          <input
+            type="text"
+            id="id"
+            name="id"
+            class="form-control"
+            formControlName="id"
+          />
+        </div>
+        <div class="col-lg-4 form-group">
+          <label class="form-label" for="mail">Email: </label>
+          <input
+            type="text"
+            id="mail"
+            name="mail"
+            class="form-control"
+            formControlName="mail"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 form-group">
+          <label class="form-label" for="personalMail">Personal Mail Id: </label
+          ><span class="required">*</span>
+          <input
+            type="text"
+            id="personalMail"
+            name="personalMail"
+            placeholder="personal email"
+            class="form-control"
+            formControlName="personalMail"
+            [ngClass]="{
+              'is-invalid':
+                resignationForm.controls['personalMail'].invalid &&
+                (resignationForm.controls['personalMail'].dirty ||
+                  resignationForm.controls['personalMail'].touched)
+            }"
+          />
+          <div
+            *ngIf="
+              resignationForm.controls['personalMail'].invalid &&
+              (resignationForm.controls['personalMail'].dirty ||
+                resignationForm.controls['personalMail'].touched)
+            "
+            class="invalid-form-control"
+          >
+            <div
+              *ngIf="resignationForm.controls['personalMail'].errors?.['required']"
+            >
+              Please enter the personal email
+            </div>
+
+            <div
+              *ngIf="resignationForm.controls['personalMail'].errors?.['pattern']"
+            >
+              Please enter the valid personal email
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 form-group">
+          <label class="form-label" for="contactNumber">Contact number: </label>
+          <span class="required">*</span>
+          <input
+            type="text"
+            id="contactNumber"
+            maxlength="10"
+            name="contactNumber"
+            placeholder="contact number"
+            class="form-control"
+            formControlName="contactNumber"
+          />
+          <div
+            *ngIf="
+              resignationForm.controls['contactNumber'].invalid &&
+              (resignationForm.controls['contactNumber'].dirty ||
+                resignationForm.controls['contactNumber'].touched)
+            "
+            class="invalid-form-control"
+          >
+            <div
+              *ngIf="resignationForm.controls['contactNumber'].errors?.['minlength']"
+            >
+              Please enter the valid contact number
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4 form-group">
+          <label class="form-label" for="HRName">HR: </label>
+          <input
+            type="text"
+            id="HRName"
+            name="HRName"
+            class="form-control"
+            formControlName="HRName"
+          />
+        </div>
+
+        <div class="col-lg-4 form-group">
+          <label class="form-label" for="projectManager"
+            >Project Manager:
+          </label>
+          <input
+            type="text"
+            id="projectManager"
+            name="projectManager"
+            class="form-control"
+            formControlName="projectManager"
+          />
+        </div>
+
+        <div class="col-lg-4 form-group">
+          <label class="form-label" for="deliveryLeader"
+            >Delivery Leader:
+          </label>
+          <input
+            type="text"
+            id="deliveryLeader"
+            name="deliveryLeader"
+            class="form-control"
+            formControlName="deliveryLeader"
+          />
+        </div>
+      </div>
+      <div
+        *ngFor="let control of feedbackQuestionsArray.controls; let i = index"
+        class="form-group"
+      >
+        <div class="row">
+          <div class="col-lg-6">
+            <label for="question{{ i }}" class="form-label">{{
+              feedbackQuestions[i].question
+            }}</label>
+            <textarea
+              id="question{{ i }}"
+              cols="60"
+              rows="4"
+              [formControl]="control"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="btn">
+      <button
+        type="submit"
+        (click)="saveResignationInformation()"
+        [disabled]="!resignationForm.valid"
+        class="btn-submit"
+      >
+        submit
+      </button>
+    </div>
+  </div>
+</div>
