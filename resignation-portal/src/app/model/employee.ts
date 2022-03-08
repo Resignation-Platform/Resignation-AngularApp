@@ -37,3 +37,8 @@ export interface IEmployeeExitDetails {
   iTClearance: boolean;
   financeClearance: boolean;
 }
+
+export interface IFeedbackQuestions {
+  id: number;
+  question: string;
+}

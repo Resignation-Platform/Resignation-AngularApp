@@ -6,6 +6,7 @@ import { AdminDetails } from 'src/app/models/AdminDetails';
 import {
   IEmployee,
   IEmployeeExitDetails,
+  IFeedbackQuestions,
   ISaveEmployeeDetails,
 } from 'src/app/model/employee';
 import { environment } from 'src/environments/environment';
@@ -17,25 +18,29 @@ export class ResignationService implements Iservice {
   constructor(private http: HttpClient) {}
 
   WebApi_Url = environment.ApiUrl;
-  fetchFeedBackQuestions() {
-    return of([
-      {
-        id: 1,
-        question: 'what is the reason the resignation?',
-      },
-      {
-        id: 2,
-        question: 'Do you have any other offer?',
-      },
-      {
-        id: 3,
-        question: 'What could be changed in the organaisation?',
-      },
-      {
-        id: 4,
-        question: 'what is the reason the resignation?',
-      },
-    ]);
+  fetchFeedBackQuestions(): Observable<IFeedbackQuestions[]> {
+    // return of([
+    //   {
+    //     id: 1,
+    //     question: 'what is the reason the resignation?',
+    //   },
+    //   {
+    //     id: 2,
+    //     question: 'Do you have any other offer?',
+    //   },
+    //   {
+    //     id: 3,
+    //     question: 'What could be changed in the organaisation?',
+    //   },
+    //   {
+    //     id: 4,
+    //     question: 'what is the reason the resignation?',
+    //   },
+    // ]);
+
+    return this.http.get<IFeedbackQuestions[]>(
+      this.WebApi_Url + '/Employees/Feedback'
+    );
   }
 
   saveExitEmployeeDetails(

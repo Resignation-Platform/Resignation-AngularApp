@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import {
   IEmployee,
   IEmployeeExitDetails,
+  IFeedbackQuestions,
   ISaveEmployeeDetails,
 } from 'src/app/model/employee';
 import { ResignationService } from 'src/services/resignation.service';
@@ -18,7 +19,7 @@ export class ResignationFormComponent implements OnInit, OnChanges {
   @Input() employeeExitDetails!: IEmployeeExitDetails;
   @Input() employeeDetail!: IEmployee;
   public resignationForm!: FormGroup;
-  public feedbackQuestions!: { id: number; question: string }[];
+  public feedbackQuestions!: IFeedbackQuestions[];
   public empName!: string;
 
   constructor(
