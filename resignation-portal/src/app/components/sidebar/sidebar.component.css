@@ -1,6 +1,6 @@
 .sidebar{
   position: fixed;
-  top: 0;
+  top: 74px;
   left: 0;
   height: 100%;
   width: 80px;
@@ -105,8 +105,6 @@ li[title]:hover {
 .sidebar ul li a i{
   height: 50px;
   min-width: 50px;
-
-
   line-height: 50px;
   text-align: center;
 }
@@ -118,7 +116,7 @@ i{
 .sidebar .company_logo{
   position: absolute;
   color: #fff;
-  bottom: 0;
+  bottom: 70px;
   left: 0;
   width: 100%;
   line-height: -160px;
@@ -126,8 +124,7 @@ i{
   display: flex;
 }
 .sidebar.active .company_logo{
-
-  transform: rotate(0deg);
+transform: rotate(0deg);
 
 }
 .sidebar .company_logo .title{
@@ -162,7 +159,6 @@ i{
 }
 .title .hashedin_title{
   margin-left: 40px;
-
-
-
 }
+
+

@@ -87,7 +87,7 @@ ul li .fa-circle-xmark::after{
 
  span{
   text-align: center;
-  padding: 39px;
+  padding: 30px;
   word-break: break-all;
   position: absolute;
 }
@@ -119,3 +119,26 @@ ul li .fa-circle-check::after{
 
   color: rgb(137, 197, 16);
 } */
+
+@media screen and (min-width: 1024px) {
+  /* .clearance-tracking{
+    width: 60%;
+    height: auto;
+    margin-left: 141px;
+  } */
+  .exittracking {
+
+    margin-left: 92px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .clearance-tracking{
+    width: 50%;
+    height: auto;
+
+  }
+  .exittracking {
+
+    margin-left: 92px;
+  }
+}
