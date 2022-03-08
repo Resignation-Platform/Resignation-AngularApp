@@ -60,6 +60,7 @@ export class ResignationService implements Iservice {
       HRName: 'testusername',
       programManagerName: 'testpmname',
       deliveryLeaderName: 'testdeliveryname',
+      isEmployeeResigned: false,
     });
   }
 }

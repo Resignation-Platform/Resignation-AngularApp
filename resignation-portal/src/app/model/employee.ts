@@ -7,6 +7,7 @@ export interface IEmployee {
   HRName: string;
   programManagerName: string;
   deliveryLeaderName: string;
+  isEmployeeResigned: boolean;
 }
 
 export interface ISaveEmployeeDetails {
