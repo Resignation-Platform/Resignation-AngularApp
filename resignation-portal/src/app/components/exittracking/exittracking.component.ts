@@ -13,4 +13,8 @@ export class ExittrackingComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  fetchExitTrackingDetails(){
+
+  }
+
 }

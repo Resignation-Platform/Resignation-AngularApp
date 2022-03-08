@@ -21,7 +21,7 @@ export class DashBoardComponent implements OnInit {
    */
   fetchEmployeeDetails(): void {
     this.resignationService
-      .fetchEmployeeDetails()
+      .fetchEmployeeDetails('')
       .subscribe((employeeDetail) => {
         this.employeeDetail = employeeDetail;
       });

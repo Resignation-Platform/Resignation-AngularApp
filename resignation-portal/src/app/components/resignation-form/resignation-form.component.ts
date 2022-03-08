@@ -47,7 +47,7 @@ export class ResignationFormComponent implements OnInit, OnChanges {
       .subscribe((feedbackQuestions) => {
         this.feedbackQuestions = feedbackQuestions;
         this.createResignationForm();
-        this.fetchEmployeeDetails();
+        this.fetchEmployeeDetails('');
       });
   }
 
@@ -115,9 +115,9 @@ export class ResignationFormComponent implements OnInit, OnChanges {
   /**
    * Fetch employee details
    */
-  fetchEmployeeDetails(): void {
+  fetchEmployeeDetails(empName:string): void {
     this.resignationService
-      .fetchEmployeeDetails()
+      .fetchEmployeeDetails(empName)
       .subscribe((employeeDetail) => {
         this.employeeDetail = employeeDetail;
         this.setDefaultToResignationForm();

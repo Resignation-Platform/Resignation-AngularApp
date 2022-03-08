@@ -4,12 +4,15 @@ import { Iservice } from './Iservice';
 import { from, Observable, of } from 'rxjs';
 import { AdminDetails } from 'src/app/models/AdminDetails';
 import { IEmployee, ISaveEmployeeDetails } from 'src/app/model/employee';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ResignationService implements Iservice {
   constructor(private http: HttpClient) {}
+
+  WebApi_Url = environment.ApiUrl;
   fetchFeedBackQuestions() {
     return of([
       {
@@ -38,29 +41,35 @@ export class ResignationService implements Iservice {
   fetchEmployeeExitProgress(ExitEmployeeNumber: string) {
     throw new Error('Method not implemented.');
   }
-  fetchDetailsForAdmins(
-    AdminEmployeeNumber: string
-  ): Observable<AdminDetails[]> {
-    throw new Error('Method not implemented.');
-  }
+
   updateAdminAcceptance(
     ExitEmployeeNumber: string,
     AdminRole: string
   ): Observable<string> {
-    throw new Error('Method not implemented.');
+    let approval_obj = {
+      ExitEmpNo: ExitEmployeeNumber,
+      AdminRole: AdminRole,
+    };
+
+    return this.http.put<any>(
+      this.WebApi_Url + '/Employees/AdminApprovals',
+      approval_obj
+    );
   }
 
-  fetchEmployeeDetails(): Observable<any> {
-    return of({
-      employeeNumber: '756743',
-      email: 'test@gmail.com',
-      role: 'developer',
-      departmentName: 'engineering',
-      dateOfJoining: '2022-03-07',
-      HRName: 'testusername',
-      programManagerName: 'testpmname',
-      deliveryLeaderName: 'testdeliveryname',
-      isEmployeeResigned: false,
-    });
+  fetchEmployeeDetails(EmployeeName: string): Observable<any> {
+    return this.http.get(this.WebApi_Url + '/Employees/' + EmployeeName);
+  }
+  fetchDetailsForAdmins(
+    AdminEmployeeNumber: string,
+    AdminRole: string
+  ): Observable<any> {
+    return this.http.get(
+      this.WebApi_Url +
+        '/Admin?AdminEmpNo=' +
+        AdminEmployeeNumber +
+        '&AdminRole=' +
+        AdminRole
+    );
   }
 }

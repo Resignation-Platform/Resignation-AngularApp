@@ -1,7 +1,8 @@
 <div class="dashboard-title"><h4>Approval Assigned To Me</h4></div>
 <div class="container admin-dashboard">
-
-  <table class="table table-bordered admin-details">
+<div *ngIf="AdminDetails_List.length==0; else idtable">No data</div>
+<ng-template #idtable>
+  <table class="table table-bordered admin-details" >
     <thead>
       <tr>
         <th>Employee Number</th>
@@ -10,12 +11,30 @@
         <th>ContactNumber</th>
         <th>Seperation Date</th>
         <th>LastWorking Date</th>
-        <th>Remarks</th>
+
         <th>Action</th>
       </tr>
 
     </thead>
+    <tbody >
 
+      <tr *ngFor="let data of AdminDetails_List">
+        <td>{{data.EmployeeNo}}</td>
+        <td>{{data.EmployeeEmailId}}</td>
+        <td>{{data.EmployeePersonalEmailid}}</td>
+        <td>{{data.EmployeeContact}}</td>
+        <td>{{data.SeperationDate}}</td>
+        <td>{{data.LastWorkingDate}}</td>
+        <td>
+          <button class="btn" (click)="onUpdateRequest(data.EmployeeNo)">
+            <i class='bx bx-check'></i></button>
+        </td>
+      </tr>
+
+    </tbody>
 
   </table>
+</ng-template>
+
+
 </div>

@@ -7,7 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ResignationFormComponent } from './components/resignation-form/resignation-form.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent},
+
   { path: 'login', component: LoginComponent},
   {path:'dashboard',component:DashBoardComponent},
   {path:'exit-tracking',component:ExittrackingComponent},
