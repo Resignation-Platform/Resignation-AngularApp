@@ -121,6 +121,7 @@
   box-shadow: var(--light-shadow);
   transition: var(--transition);
   flex: 0 0 calc(50% - 1rem);
+  cursor: pointer;
 }
 
 .card:hover {

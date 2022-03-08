@@ -1,8 +1,9 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   IEmployee,
-  IFeedback,
+  IEmployeeExitDetails,
   ISaveEmployeeDetails,
 } from 'src/app/model/employee';
 import { ResignationService } from 'src/services/resignation.service';
@@ -14,19 +15,28 @@ import { ResignationService } from 'src/services/resignation.service';
 })
 export class ResignationFormComponent implements OnInit, OnChanges {
   @Input() screenType!: string;
-  @Input() employeeExitDetails: any;
+  @Input() employeeExitDetails!: IEmployeeExitDetails;
+  @Input() employeeDetail!: IEmployee;
   public resignationForm!: FormGroup;
   public feedbackQuestions!: { id: number; question: string }[];
-  public employeeDetail!: IEmployee;
+  public empName!: string;
 
   constructor(
     private formBuilder: FormBuilder,
-    private resignationService: ResignationService
+    private resignationService: ResignationService,
+    private route: Router
   ) {}
 
   ngOnChanges(): void {
-    if (this.screenType === 'exitTracking' && this.employeeExitDetails) {
+    if (!this.resignationForm && this.screenType === 'exitTracking') {
       this.createResignationForm();
+    }
+
+    if (
+      this.screenType === 'exitTracking' &&
+      this.employeeExitDetails &&
+      this.employeeDetail
+    ) {
       this.resignationForm.disable();
       this.setEmployeeDetail();
     }
@@ -34,6 +44,10 @@ export class ResignationFormComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     if (this.screenType !== 'exitTracking') {
+      let LocalStorage_values = JSON.parse(
+        localStorage.getItem('Employee_Details') || ''
+      );
+      this.empName = LocalStorage_values.empName;
       this.fetchFeedbackQuestions();
     }
   }
@@ -47,7 +61,7 @@ export class ResignationFormComponent implements OnInit, OnChanges {
       .subscribe((feedbackQuestions) => {
         this.feedbackQuestions = feedbackQuestions;
         this.createResignationForm();
-        this.fetchEmployeeDetails('');
+        this.fetchEmployeeDetails(this.empName);
       });
   }
 
@@ -68,7 +82,7 @@ export class ResignationFormComponent implements OnInit, OnChanges {
           ),
         ],
       ],
-      contactNumber: ['', Validators.minLength(10)],
+      contactNumber: ['', [Validators.required, Validators.minLength(10)]],
       HRName: [{ value: '', disabled: true }],
       projectManager: [{ value: '', disabled: true }],
       deliveryLeader: [{ value: '', disabled: true }],
@@ -78,14 +92,14 @@ export class ResignationFormComponent implements OnInit, OnChanges {
 
   setEmployeeDetail(): void {
     this.resignationForm.patchValue({
-      name: this.employeeExitDetails.HRName,
+      name: this.employeeDetail.empName,
       id: this.employeeExitDetails.employeeNumber,
       mail: this.employeeExitDetails.email,
       personalMail: this.employeeExitDetails.personalEmail,
       contactNumber: this.employeeExitDetails.contact,
-      HRName: this.employeeExitDetails.HRName,
-      projectManager: this.employeeExitDetails.programManagerName,
-      deliveryLeader: this.employeeExitDetails.deliveryLeaderName,
+      HRName: this.employeeDetail.HRName,
+      projectManager: this.employeeDetail.programManagerName,
+      deliveryLeader: this.employeeDetail.deliveryLeaderName,
     });
   }
 
@@ -115,7 +129,7 @@ export class ResignationFormComponent implements OnInit, OnChanges {
   /**
    * Fetch employee details
    */
-  fetchEmployeeDetails(empName:string): void {
+  fetchEmployeeDetails(empName: string): void {
     this.resignationService
       .fetchEmployeeDetails(empName)
       .subscribe((employeeDetail) => {
@@ -159,6 +173,13 @@ export class ResignationFormComponent implements OnInit, OnChanges {
 
     this.resignationService
       .saveExitEmployeeDetails(resignationDetailsPayload)
-      .subscribe((x) => {});
+      .subscribe({
+        next: (x) => {
+          this.route.navigate(['/exit-tracking']);
+        },
+        error: () => {
+          alert('Resignation save failed');
+        },
+      });
   }
 }

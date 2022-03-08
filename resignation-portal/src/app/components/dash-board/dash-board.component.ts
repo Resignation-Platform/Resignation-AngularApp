@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IEmployee } from 'src/app/model/employee';
+import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
+import { IEmployee, IEmployeeExitDetails } from 'src/app/model/employee';
 import { ResignationService } from 'src/services/resignation.service';
 
 @Component({
@@ -9,10 +11,21 @@ import { ResignationService } from 'src/services/resignation.service';
 })
 export class DashBoardComponent implements OnInit {
   public employeeDetail!: IEmployee;
+  public empName!: string;
+  public empNumber!: string;
+  employeeExitDetails!: IEmployeeExitDetails;
 
-  constructor(private resignationService: ResignationService) {}
+  constructor(
+    private resignationService: ResignationService,
+    private route: Router
+  ) {}
 
   ngOnInit(): void {
+    let LocalStorage_values = JSON.parse(
+      localStorage.getItem('Employee_Details') || ''
+    );
+    this.empName = LocalStorage_values.empName;
+    this.empNumber = LocalStorage_values.empNumber;
     this.fetchEmployeeDetails();
   }
 
@@ -20,11 +33,16 @@ export class DashBoardComponent implements OnInit {
    * Fetch employee details
    */
   fetchEmployeeDetails(): void {
-    this.resignationService
-      .fetchEmployeeDetails('')
-      .subscribe((employeeDetail) => {
-        this.employeeDetail = employeeDetail;
-      });
+    let employeeDetails$ = this.resignationService.fetchEmployeeDetails(
+      this.empName
+    );
+    let employeeExitDetails$ =
+      this.resignationService.fetchEmployeeExitProgress(this.empNumber);
+
+    forkJoin([employeeDetails$, employeeExitDetails$]).subscribe((details) => {
+      this.employeeDetail = details[0];
+      this.employeeExitDetails = details[1];
+    });
   }
 
   /**
@@ -36,5 +54,10 @@ export class DashBoardComponent implements OnInit {
       this.employeeDetail.role === 'program manager' ||
       this.employeeDetail.role === 'delivery leader'
     );
+  }
+
+  initiateNavigation(param: string): void {
+    const url = `/${param}`;
+    this.route.navigate([url]);
   }
 }

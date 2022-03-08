@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Iservice } from './Iservice';
-import { from, Observable, of } from 'rxjs';
+import { from, Observable, of, throwError } from 'rxjs';
 import { AdminDetails } from 'src/app/models/AdminDetails';
-import { IEmployee, ISaveEmployeeDetails } from 'src/app/model/employee';
+import {
+  IEmployee,
+  IEmployeeExitDetails,
+  ISaveEmployeeDetails,
+} from 'src/app/model/employee';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -33,13 +37,22 @@ export class ResignationService implements Iservice {
       },
     ]);
   }
+
   saveExitEmployeeDetails(
     employeeeExitDetails: ISaveEmployeeDetails
   ): Observable<any> {
-    throw new Error('Method not implemented.');
+    return this.http.post(
+      this.WebApi_Url + '/Employees/',
+      employeeeExitDetails
+    );
   }
-  fetchEmployeeExitProgress(ExitEmployeeNumber: string) {
-    throw new Error('Method not implemented.');
+
+  fetchEmployeeExitProgress(
+    exitEmployeeNumber: string
+  ): Observable<IEmployeeExitDetails> {
+    return this.http.get<IEmployeeExitDetails>(
+      this.WebApi_Url + '/Employees/' + exitEmployeeNumber
+    );
   }
 
   updateAdminAcceptance(
@@ -57,9 +70,12 @@ export class ResignationService implements Iservice {
     );
   }
 
-  fetchEmployeeDetails(EmployeeName: string): Observable<any> {
-    return this.http.get(this.WebApi_Url + '/Employees/' + EmployeeName);
+  fetchEmployeeDetails(EmployeeName: string): Observable<IEmployee> {
+    return this.http.get<IEmployee>(
+      this.WebApi_Url + '/Employees/' + EmployeeName
+    );
   }
+
   fetchDetailsForAdmins(
     AdminEmployeeNumber: string,
     AdminRole: string

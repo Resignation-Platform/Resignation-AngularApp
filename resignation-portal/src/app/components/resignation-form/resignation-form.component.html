@@ -85,6 +85,12 @@
             placeholder="contact number"
             class="form-control"
             formControlName="contactNumber"
+            [ngClass]="{
+              'is-invalid':
+                resignationForm.controls['contactNumber'].invalid &&
+                (resignationForm.controls['contactNumber'].dirty ||
+                  resignationForm.controls['contactNumber'].touched)
+            }"
           />
           <div
             *ngIf="
@@ -94,6 +100,11 @@
             "
             class="invalid-form-control"
           >
+            <div
+              *ngIf="resignationForm.controls['personalMail'].errors?.['required']"
+            >
+              Please enter the contact number
+            </div>
             <div
               *ngIf="resignationForm.controls['contactNumber'].errors?.['minlength']"
             >
