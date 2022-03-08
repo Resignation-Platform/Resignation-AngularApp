@@ -13,6 +13,8 @@ import { ResignationFormComponent } from './components/resignation-form/resignat
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { HeaderComponent } from './components/header/header.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    LayoutModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   IEmployee,
@@ -12,18 +12,30 @@ import { ResignationService } from 'src/services/resignation.service';
   templateUrl: './resignation-form.component.html',
   styleUrls: ['./resignation-form.component.css'],
 })
-export class ResignationFormComponent implements OnInit {
+export class ResignationFormComponent implements OnInit, OnChanges {
+  @Input() screenType!: string;
+  @Input() employeeExitDetails: any;
   public resignationForm!: FormGroup;
-  feedbackQuestions!: { id: number; question: string }[];
-  employeeDetail!: IEmployee;
+  public feedbackQuestions!: { id: number; question: string }[];
+  public employeeDetail!: IEmployee;
 
   constructor(
     private formBuilder: FormBuilder,
     private resignationService: ResignationService
   ) {}
 
+  ngOnChanges(): void {
+    if (this.screenType === 'exitTracking' && this.employeeExitDetails) {
+      this.createResignationForm();
+      this.resignationForm.disable();
+      this.setEmployeeDetail();
+    }
+  }
+
   ngOnInit(): void {
-    this.fetchFeedbackQuestions();
+    if (this.screenType !== 'exitTracking') {
+      this.fetchFeedbackQuestions();
+    }
   }
 
   /**
@@ -64,16 +76,33 @@ export class ResignationFormComponent implements OnInit {
     });
   }
 
+  setEmployeeDetail(): void {
+    this.resignationForm.patchValue({
+      name: this.employeeExitDetails.HRName,
+      id: this.employeeExitDetails.employeeNumber,
+      mail: this.employeeExitDetails.email,
+      personalMail: this.employeeExitDetails.personalEmail,
+      contactNumber: this.employeeExitDetails.contact,
+      HRName: this.employeeExitDetails.HRName,
+      projectManager: this.employeeExitDetails.programManagerName,
+      deliveryLeader: this.employeeExitDetails.deliveryLeaderName,
+    });
+  }
+
   /**
    * Creates the array of feed back form controls
    * @returns - the form array of feedback controls
    */
-  createArrayOfFeedbackFormControls(): FormArray {
-    const controls = this.feedbackQuestions.map((question) => {
-      return this.formBuilder.control('');
-    });
+  createArrayOfFeedbackFormControls(): FormArray | null {
+    if (this.screenType !== 'exitTracking') {
+      const controls = this.feedbackQuestions.map((question) => {
+        return this.formBuilder.control('');
+      });
 
-    return new FormArray(controls);
+      return new FormArray(controls);
+    }
+
+    return null;
   }
 
   /**

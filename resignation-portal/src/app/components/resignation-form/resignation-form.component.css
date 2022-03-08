@@ -1,10 +1,11 @@
-.header {
-  height: 10vh;
+.resignation-details {
+  margin-top: 60px;
+  margin-left: 95px;
 }
 
 .resignation-form {
   background: var(--clr-white);
-  width: 90%;
+  width: 98%;
   border-radius: var(--radius);
 }
 

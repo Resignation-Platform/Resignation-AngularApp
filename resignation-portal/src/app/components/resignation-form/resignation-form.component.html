@@ -1,7 +1,5 @@
-<header class="header">Header</header>
-<div class="row">
-  <div class="col-lg-1">side bar</div>
-  <div class="col-lg-11 resignation-form">
+<div [ngClass]="{ 'resignation-details': screenType !== 'exitTracking' }">
+  <div class="col-lg-12 px-3 resignation-form">
     <p class="form-title">enter details</p>
     <form [formGroup]="resignationForm">
       <div class="row">
@@ -143,7 +141,7 @@
           />
         </div>
       </div>
-      <div class="row">
+      <div *ngIf="screenType !== 'exitTracking'" class="row">
         <div
           *ngFor="let control of feedbackQuestionsArray.controls; let i = index"
           class="form-group col-lg-6"
@@ -161,7 +159,7 @@
         </div>
       </div>
     </form>
-    <div class="btn">
+    <div *ngIf="screenType !== 'exitTracking'" class="btn">
       <button
         type="submit"
         (click)="saveResignationInformation()"
