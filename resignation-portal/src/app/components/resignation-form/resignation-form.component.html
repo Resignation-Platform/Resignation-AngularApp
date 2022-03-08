@@ -143,22 +143,21 @@
           />
         </div>
       </div>
-      <div
-        *ngFor="let control of feedbackQuestionsArray.controls; let i = index"
-        class="form-group"
-      >
-        <div class="row">
-          <div class="col-lg-6">
-            <label for="question{{ i }}" class="form-label">{{
-              feedbackQuestions[i].question
-            }}</label>
-            <textarea
-              id="question{{ i }}"
-              cols="60"
-              rows="4"
-
-            ></textarea>
-          </div>
+      <div class="row">
+        <div
+          *ngFor="let control of feedbackQuestionsArray.controls; let i = index"
+          class="form-group col-lg-6"
+        >
+          <label for="question{{ i }}" class="form-label">{{
+            feedbackQuestions[i].question
+          }}</label>
+          <textarea
+            id="question{{ i }}"
+            cols="60"
+            rows="3"
+            maxlength="75"
+            [formControl]="control"
+          ></textarea>
         </div>
       </div>
     </form>

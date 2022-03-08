@@ -9,6 +9,7 @@
 }
 
 .form-title {
+  margin-top: 1rem;
   text-transform: capitalize;
   font-weight: 600;
 }
@@ -18,8 +19,8 @@
 }
 
 .form-label {
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.7rem;
+  font-weight: 800;
   text-transform: capitalize;
 }
 
