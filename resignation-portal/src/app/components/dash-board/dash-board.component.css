@@ -10,7 +10,7 @@
 .side-detail-bar {
   height: 90vh;
   padding: 0 1rem;
-  background: linear-gradient(330deg,#ff5276, #fe8d79);
+  background: linear-gradient(330deg, #ff5276, #fe8d79);
   border-radius: var(--radius);
   opacity: 0.75;
 }
@@ -110,6 +110,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .card {

@@ -5,17 +5,16 @@
         <i class="fa-solid fa-user fa-4x profile-icon"></i>
       </div>
 
-      <div class="employee-name">sarath kumar v</div>
-      <div class="employee-number">760964</div>
-      <div class="employee-position">software engineer</div>
-      <div class="employee-mail mb-3">sarath@gmail.com</div>
+      <div class="employee-name">{{ employeeDetail.HRName }}</div>
+      <div class="employee-number">{{ employeeDetail.employeeNumber }}</div>
+      <div class="employee-position">{{ employeeDetail.role }}</div>
+      <div class="employee-mail mb-3">{{ employeeDetail.email }}</div>
       <div class="break-line"></div>
       <div class="quick-links">
         <div class="link-title mb-3">quick links</div>
-        <button type="button" class="link-btn">resignation form</button>
-        <button type="button" class="link-btn">approval page</button>
+        <button type="button" class="link-btn">resignation</button>
+        <button type="button" class="link-btn">approval</button>
       </div>
-
     </div>
     <div class="col-lg-10">
       <h4 class="card-title">dashboard</h4>
@@ -23,7 +22,7 @@
         <!-- single card -->
         <a [routerLink]="'/seperation'">
         <div class="card">
-          <div class="resignation-title">resignation form</div>
+          <div class="resignation-title">resignation</div>
           <p class="resignation-info">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, sit.
             Qui exercitationem accusamus nihil voluptatem?
@@ -32,8 +31,17 @@
       </a>
         <!-- End of single card -->
         <!-- single card -->
-        <div class="card">
-          <div class="resignation-title">approval page</div>
+        <div *ngIf="checkApprovalRole()" class="card">
+          <div class="resignation-title">approval</div>
+          <p class="resignation-info">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, sit.
+            Qui exercitationem accusamus nihil voluptatem?
+          </p>
+        </div>
+        <!-- End of single card -->
+        <!-- single card -->
+        <div *ngIf="employeeDetail.isEmployeeResigned" class="card">
+          <div class="resignation-title">exit tracking</div>
           <p class="resignation-info">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic, sit.
             Qui exercitationem accusamus nihil voluptatem?
@@ -42,6 +50,5 @@
         <!-- End of single card -->
       </div>
     </div>
-
   </div>
 </div>
