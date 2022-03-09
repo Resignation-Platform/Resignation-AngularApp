@@ -11,6 +11,7 @@ import { ResignationService } from 'src/services/resignation.service';
 export class SidebarComponent implements OnInit {
 
   isSideBarActivated:boolean=false;
+  isAdmin:boolean=false;
   isLoggedIn$!: Observable<boolean>;
   @Input() empArray!:IEmployee[];
   constructor(private service :ResignationService) {
@@ -19,17 +20,30 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
 
-   this.isLoggedIn$= this.service.isLoggedIn
+   this.isLoggedIn$= this.service.isLoggedIn;
+   let LocalStorage_values = JSON.parse(
+    localStorage.getItem('Employee_Details') || ''
+  );
+    this.confirmIsAdmin(LocalStorage_values.empRole)
   }
+  confirmIsAdmin(role:string){
+    if (role?.toUpperCase()==='HR'|| role?.toUpperCase()==='PM'|| role?.toUpperCase()==='DH') {
+        this.isAdmin=true;
+    }
+    else{
+      this.isAdmin=false;
+    }
+  }
+
   onExpandSidebar(){
-    if ( this.isSideBarActivated==true) {
+    if (this.isSideBarActivated) {
 
       this.isSideBarActivated=false;
     }
     else{
       this.isSideBarActivated=true;
     }
-    console.log(this.isSideBarActivated);
+
   }
 
   onLogout(){

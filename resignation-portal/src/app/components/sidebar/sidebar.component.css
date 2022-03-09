@@ -6,6 +6,7 @@
   width: 80px;
   background: linear-gradient(330deg, #fe8d79, #ff5276);
   padding: 6px 14px;
+  z-index: 2;
 
 }
 .sidebar.active{

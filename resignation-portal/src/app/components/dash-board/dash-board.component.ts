@@ -52,9 +52,9 @@ export class DashBoardComponent implements OnInit {
    */
   checkApprovalRole(): boolean {
     return (
-      this.employeeDetail.role === 'HR' ||
-      this.employeeDetail.role === 'program manager' ||
-      this.employeeDetail.role === 'delivery leader'
+      this.employeeDetail.role?.toUpperCase() === 'HR' ||
+      this.employeeDetail.role?.toUpperCase() === 'PM' ||
+      this.employeeDetail.role?.toUpperCase() === 'DH'
     );
   }
 

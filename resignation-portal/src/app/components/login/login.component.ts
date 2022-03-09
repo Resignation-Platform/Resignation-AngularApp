@@ -11,6 +11,7 @@ import { ResignationService } from 'src/services/resignation.service';
 export class LoginComponent implements OnInit,OnChanges {
 
   model: any = {};
+
   employeeDetails_list: IEmployee[] = [
 
   ];

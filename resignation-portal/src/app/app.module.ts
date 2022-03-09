@@ -17,6 +17,7 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { LogoutComponent } from './components/logout/logout.component';
+import { HelpComponent } from './components/help/help.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { LogoutComponent } from './components/logout/logout.component';
     LoginComponent,
     HeaderComponent,
     LogoutComponent,
+    HelpComponent,
   ],
   imports: [
     BrowserModule,

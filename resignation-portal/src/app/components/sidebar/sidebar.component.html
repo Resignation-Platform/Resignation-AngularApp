@@ -22,20 +22,20 @@
         >
       </a>
     </li>
-    <li title="Approvals">
+    <li title="Approvals" *ngIf="isAdmin">
       <a [routerLink]="'/admin'">
         <i class="fa-solid fa-users"></i>
         <span class="links_name">Approvals</span>
       </a>
     </li>
-    <li title="Exit-Tracker">
+    <li title="LogOut">
       <a (click)="onLogout()">
         <i class="bx bx-exit"></i>
         <span  class="links_name">Exit</span>
       </a>
     </li>
     <li title="Help">
-      <a href="">
+      <a [routerLink]="'/help'">
         <i class="bx bx-help-circle"></i>
         <span class="links_name">Help</span>
       </a>

@@ -6,7 +6,7 @@
       [pageSize]="pageSize"
       [skip]="skip"
       [pageable]="true"
-      [height]="400"
+
       (pageChange)="pageChange($event)"
     >
       <kendo-grid-column [width]="100" field="employeeNo" title="Number">
@@ -26,15 +26,19 @@
       </kendo-grid-column>
       <kendo-grid-column
         [width]="160"
-        field="seperationDate"
         title="Separation Date"
       >
+      <ng-template kendoGridCellTemplate let-dataItem>
+        {{dataItem.seperationDate | date:'dd-MMM-yyyy'}}
+      </ng-template>
       </kendo-grid-column>
       <kendo-grid-column
         [width]="160"
-        field="lastWorkingDate"
         title="Last Working Date"
       >
+      <ng-template kendoGridCellTemplate let-dataItem>
+        {{dataItem.lastWorkingDate | date:'dd-MMM-yyyy'}}
+      </ng-template>
       </kendo-grid-column>
       <kendo-grid-column [width]="160">
         <ng-template kendoGridCellTemplate let-dataItem>

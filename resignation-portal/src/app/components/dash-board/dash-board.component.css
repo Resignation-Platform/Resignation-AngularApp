@@ -18,8 +18,8 @@
 .profile-icon-container {
   border: 1px solid black;
   text-align: center;
-  width: 50%;
-  height: 18%;
+  width: 60%;
+  height:15%;
   margin: 0 auto;
   margin-top: 2rem;
   border-radius: 50%;
@@ -142,4 +142,5 @@
 
 .resignation-info {
   text-transform: capitalize;
+  text-align: center;
 }
