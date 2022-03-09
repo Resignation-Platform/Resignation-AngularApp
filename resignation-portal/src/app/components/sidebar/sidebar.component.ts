@@ -1,4 +1,7 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
+import { IEmployee } from 'src/app/model/employee';
+import { ResignationService } from 'src/services/resignation.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,9 +11,15 @@ import { Component, HostListener, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
 
   isSideBarActivated:boolean=false;
-  constructor() { }
+  isLoggedIn$!: Observable<boolean>;
+  @Input() empArray!:IEmployee[];
+  constructor(private service :ResignationService) {
+
+  }
 
   ngOnInit(): void {
+
+   this.isLoggedIn$= this.service.isLoggedIn
   }
   onExpandSidebar(){
     if ( this.isSideBarActivated==true) {
@@ -22,4 +31,9 @@ export class SidebarComponent implements OnInit {
     }
     console.log(this.isSideBarActivated);
   }
+
+  onLogout(){
+    this.service.userLogOut();
+  }
 }
+

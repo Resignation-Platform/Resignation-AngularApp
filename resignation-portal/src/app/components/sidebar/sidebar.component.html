@@ -1,3 +1,9 @@
+
+
+<div *ngIf="isLoggedIn$|async">
+
+
+
 <div class="sidebar" [ngClass]="{ active: isSideBarActivated === true }">
   <div class="logo_content">
     <a (click)="onExpandSidebar()"><i class="bx bx-menu" id="btn"></i></a>
@@ -23,9 +29,9 @@
       </a>
     </li>
     <li title="Exit-Tracker">
-      <a [routerLink]="'/exit-tracking'">
+      <a (click)="onLogout()">
         <i class="bx bx-exit"></i>
-        <span [routerLink]="'/exit-tracking'" class="links_name">Exit</span>
+        <span  class="links_name">Exit</span>
       </a>
     </li>
     <li title="Help">
@@ -41,4 +47,6 @@
       <div class="hashedin_title deloitte">By Deloitte</div>
     </div>
   </div>
+</div>
+
 </div>

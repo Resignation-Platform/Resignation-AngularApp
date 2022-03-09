@@ -11,27 +11,27 @@
       </div>
     </li>
     <li>
-      <i class="fa-solid fa-circle-check" *ngIf="show == 1"></i>
-      <i class="fa-solid fa-circle-xmark" *ngIf="show == 0"></i>
+      <i class="fa-solid fa-circle-check" *ngIf="Employee_ExitProgress$.isHRApproved"></i>
+      <i class="fa-solid fa-circle-xmark" *ngIf="!Employee_ExitProgress$.isHRApproved "></i>
       <div class="tracking-title"><p>Hr</p></div>
     </li>
     <li>
-      <i class="fa-solid fa-circle-check" *ngIf="show == 1"></i>
-      <i class="fa-solid fa-circle-xmark" *ngIf="show == 0"></i>
+      <i class="fa-solid fa-circle-check" *ngIf="Employee_ExitProgress$.isPMApproved"></i>
+      <i class="fa-solid fa-circle-xmark" *ngIf="!Employee_ExitProgress$.isPMApproved"></i>
       <div class="tracking-title">
         <p>Manager</p>
       </div>
     </li>
     <li>
-      <i class="fa-solid fa-circle-check" *ngIf="show == 1"></i>
-      <i class="fa-solid fa-circle-xmark" *ngIf="show == 0"></i>
+      <i class="fa-solid fa-circle-check" *ngIf="Employee_ExitProgress$.isDHApproved"></i>
+      <i class="fa-solid fa-circle-xmark" *ngIf="!Employee_ExitProgress$.isDHApproved"></i>
       <div class="tracking-title">
         <p>Delivery Head</p>
       </div>
     </li>
     <li>
-      <i class="fa-solid fa-circle-check" *ngIf="show == 1"></i>
-      <i class="fa-solid fa-circle-xmark" *ngIf="show == 0"></i>
+      <i class="fa-solid fa-circle-check" *ngIf="Employee_ExitProgress$.financeClearance"></i>
+      <i class="fa-solid fa-circle-xmark" *ngIf="!Employee_ExitProgress$.financeClearance"></i>
       <div class="tracking-title">
         <p>Closure</p>
       </div>
@@ -45,6 +45,8 @@
       <ng-template kendoPanelBarContent>
         <app-resignation-form
           [screenType]="'exitTracking'"
+          [employeeDetail]="Employee_Details$"
+          [employeeExitDetails]="Employee_ExitProgress$"
         ></app-resignation-form>
       </ng-template>
     </kendo-panelbar-item>

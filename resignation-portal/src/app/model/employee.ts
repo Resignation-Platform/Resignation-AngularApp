@@ -1,11 +1,11 @@
 export interface IEmployee {
   employeeNumber: string;
-  empName: string;
+  employeeName: string;
   email: string;
   role: string;
   departmentName: string;
   dateOfJoining: string;
-  HRName: string;
+  hrName: string;
   programManagerName: string;
   deliveryLeaderName: string;
 }
@@ -13,14 +13,28 @@ export interface IEmployee {
 export interface ISaveEmployeeDetails {
   employeeNumber: string;
   mailId: string;
-  personMailId: string;
+  personalEmailId: string;
   contactNumber: string;
-  feebacks: IFeedback[];
+  feedbacks: IFeedback[];
 }
 
 export interface IFeedback {
   question: string;
   answer: string;
+}
+
+export interface IEmployeeExitProgress {
+  employeeNumber: string;
+  email: string;
+  personalEmail: string;
+  contact: string;
+  separationDate: string;
+  lastWorkingDate: string;
+  isHRApproved: boolean;
+  isPMApproved: boolean;
+  isDHApproved: boolean;
+  iTClearance: boolean;
+  financeClearance: boolean;
 }
 
 export interface IEmployeeExitDetails {

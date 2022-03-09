@@ -1,4 +1,4 @@
-<div class="container-fluid vertical-center" *ngIf="employeeDetails_list.length==0">
+<div class="container-fluid vertical-center" *ngIf="employeeDetails_list.length==0" >
   <div class="row main-content bg-success text-center">
       <div class="col-md-5 text-center company__info">
           <!-- <br><br><span class="company__logo"><span><img src="../../../assets/hash_logo.png"></span></span> -->
@@ -27,11 +27,11 @@
   </div>
 </div>
 
-<main class="main-section" style="display: inline-block;" *ngIf="employeeDetails_list.length>0" >
-<app-sidebar></app-sidebar>
+<main class="main-section"   *ngIf="employeeDetails_list.length>0">
+<app-sidebar ></app-sidebar>
 <div class="home-content">
 
 </div>
 
-</main>
 <router-outlet></router-outlet>
+</main>
