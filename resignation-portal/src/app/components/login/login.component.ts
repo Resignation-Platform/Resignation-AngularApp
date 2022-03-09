@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IEmployee } from 'src/app/model/employee';
 import { ResignationService } from 'src/services/resignation.service';
@@ -8,15 +8,27 @@ import { ResignationService } from 'src/services/resignation.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit,OnChanges {
 
   model: any = {};
   employeeDetails_list: IEmployee[] = [
 
   ];
   constructor(private service: ResignationService, private route: Router) {}
+  ngOnChanges(changes: SimpleChanges): void {
 
-  ngOnInit(): void {}
+    this.onLogout();
+  }
+  ngOnInit(): void {
+  }
+  onLogout(){
+
+    this.employeeDetails_list=[];
+  }
+  checkEmployeeList(){
+    console.log('calling array length')
+    return this.employeeDetails_list.length>0
+  }
 
   onSubmit() {
     let employee_Name = this.model.emailid;

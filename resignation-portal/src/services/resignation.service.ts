@@ -19,24 +19,24 @@ export class ResignationService implements Iservice {
 
   WebApi_Url = environment.ApiUrl;
   fetchFeedBackQuestions(): Observable<IFeedbackQuestions[]> {
-    // return of([
-    //   {
-    //     id: 1,
-    //     question: 'what is the reason the resignation?',
-    //   },
-    //   {
-    //     id: 2,
-    //     question: 'Do you have any other offer?',
-    //   },
-    //   {
-    //     id: 3,
-    //     question: 'What could be changed in the organaisation?',
-    //   },
-    //   {
-    //     id: 4,
-    //     question: 'what is the reason the resignation?',
-    //   },
-    // ]);
+    return of([
+      {
+        id: 1,
+        question: 'what is the reason the resignation?',
+      },
+      {
+        id: 2,
+        question: 'Do you have any other offer?',
+      },
+      {
+        id: 3,
+        question: 'What could be changed in the organaisation?',
+      },
+      {
+        id: 4,
+        question: 'what is the reason the resignation?',
+      },
+    ]);
 
     return this.http.get<IFeedbackQuestions[]>(
       this.WebApi_Url + '/Employees/Feedback'
@@ -56,7 +56,7 @@ export class ResignationService implements Iservice {
     exitEmployeeNumber: string
   ): Observable<IEmployeeExitDetails> {
     return this.http.get<IEmployeeExitDetails>(
-      this.WebApi_Url + '/Employees/' + exitEmployeeNumber
+      this.WebApi_Url + '/Employees/FetchEmployeeExitDetails/' + exitEmployeeNumber
     );
   }
 

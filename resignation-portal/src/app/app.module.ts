@@ -15,6 +15,8 @@ import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LogoutComponent } from './components/logout/logout.component';
+
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ResignationFormComponent,
     LoginComponent,
     HeaderComponent,
+    LogoutComponent,
+
   ],
   imports: [
     BrowserModule,

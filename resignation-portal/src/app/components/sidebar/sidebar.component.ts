@@ -1,4 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { IEmployee } from 'src/app/model/employee';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,7 +9,10 @@ import { Component, HostListener, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
 
   isSideBarActivated:boolean=false;
-  constructor() { }
+  @Input() empArray!:IEmployee[];
+  constructor() {
+
+  }
 
   ngOnInit(): void {
   }

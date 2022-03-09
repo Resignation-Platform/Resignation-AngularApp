@@ -52,7 +52,30 @@ export class ResignationFormComponent implements OnInit, OnChanges {
       this.fetchFeedbackQuestions();
     }
   }
-
+/**
+   * Creates the resignation form
+   */
+ createResignationForm(): void {
+  this.resignationForm = this.formBuilder.group({
+    name: [{ value: '', disabled: true }],
+    id: [{ value: '', disabled: true }],
+    mail: [{ value: '', disabled: true }],
+    personalMail: [
+      '',
+      [
+        Validators.required,
+        Validators.pattern(
+          '^[A-Za-z0-9._%+-]+@[A-Za-z0-9._%+-]{2,}[.][A-Za-z]{2,}$'
+        ),
+      ],
+    ],
+    contactNumber: ['', [Validators.required, Validators.minLength(10)]],
+    HRName: [{ value: '', disabled: true }],
+    projectManager: [{ value: '', disabled: true }],
+    deliveryLeader: [{ value: '', disabled: true }],
+    feedbacks: this.createArrayOfFeedbackFormControls(),
+  });
+}
   /**
    * Fetches the feedback questions
    */
@@ -66,39 +89,40 @@ export class ResignationFormComponent implements OnInit, OnChanges {
       });
   }
 
-  /**
-   * Creates the resignation form
+   /**
+   * Fetch employee details
    */
-  createResignationForm(): void {
-    this.resignationForm = this.formBuilder.group({
-      name: [{ value: '', disabled: true }],
-      id: [{ value: '', disabled: true }],
-      mail: [{ value: '', disabled: true }],
-      personalMail: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(
-            '^[A-Za-z0-9._%+-]+@[A-Za-z0-9._%+-]{2,}[.][A-Za-z]{2,}$'
-          ),
-        ],
-      ],
-      contactNumber: ['', [Validators.required, Validators.minLength(10)]],
-      HRName: [{ value: '', disabled: true }],
-      projectManager: [{ value: '', disabled: true }],
-      deliveryLeader: [{ value: '', disabled: true }],
-      feedbacks: this.createArrayOfFeedbackFormControls(),
+    fetchEmployeeDetails(empName: string): void {
+      this.resignationService
+        .fetchEmployeeDetails(empName)
+        .subscribe((employeeDetail) => {
+          this.employeeDetail = employeeDetail;
+          this.setDefaultToResignationForm();
+        });
+    }
+
+    /**
+   * Sets the default value for resignation form
+   */
+  setDefaultToResignationForm(): void {
+    this.resignationForm.patchValue({
+      name: this.employeeDetail.employeeName,
+      id: this.employeeDetail.employeeNumber,
+      mail: this.employeeDetail.email,
+      HRName: this.employeeDetail.hrName,
+      projectManager: this.employeeDetail.programManagerName,
+      deliveryLeader: this.employeeDetail.deliveryLeaderName,
     });
   }
 
   setEmployeeDetail(): void {
     this.resignationForm.patchValue({
-      name: this.employeeDetail.empName,
+      name: this.employeeDetail.employeeName,
       id: this.employeeExitDetails.employeeNumber,
       mail: this.employeeExitDetails.email,
       personalMail: this.employeeExitDetails.personalEmail,
       contactNumber: this.employeeExitDetails.contact,
-      HRName: this.employeeDetail.HRName,
+      HRName: this.employeeDetail.hrName,
       projectManager: this.employeeDetail.programManagerName,
       deliveryLeader: this.employeeDetail.deliveryLeaderName,
     });
@@ -127,31 +151,8 @@ export class ResignationFormComponent implements OnInit, OnChanges {
     return this.resignationForm.controls['feedbacks'] as FormArray;
   }
 
-  /**
-   * Fetch employee details
-   */
-  fetchEmployeeDetails(empName: string): void {
-    this.resignationService
-      .fetchEmployeeDetails(empName)
-      .subscribe((employeeDetail) => {
-        this.employeeDetail = employeeDetail;
-        this.setDefaultToResignationForm();
-      });
-  }
 
-  /**
-   * Sets the default value for resignation form
-   */
-  setDefaultToResignationForm(): void {
-    this.resignationForm.patchValue({
-      name: this.employeeDetail.HRName,
-      id: this.employeeDetail.employeeNumber,
-      mail: this.employeeDetail.email,
-      HRName: this.employeeDetail.HRName,
-      projectManager: this.employeeDetail.programManagerName,
-      deliveryLeader: this.employeeDetail.deliveryLeaderName,
-    });
-  }
+
 
   /**
    * Saves the resignation information
@@ -162,9 +163,9 @@ export class ResignationFormComponent implements OnInit, OnChanges {
     const resignationDetailsPayload: ISaveEmployeeDetails = {
       employeeNumber: resignationDetails.id,
       mailId: resignationDetails.mail,
-      personMailId: resignationDetails.personalMail,
+      personalEmailId: resignationDetails.personalMail,
       contactNumber: resignationDetails.contactNumber,
-      feebacks: feedbackAnswers.map((answer, i) => {
+      feedbacks: feedbackAnswers.map((answer, i) => {
         return {
           question: this.feedbackQuestions[i].question,
           answer: answer,

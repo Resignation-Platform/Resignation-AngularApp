@@ -1,12 +1,13 @@
 .exittracking {
   width: 80%;
   margin-top: 100px;
-  margin-left: 100px;
+  margin-left: 150px;
 }
 
 .employee-detail {
   width: 80%;
   margin: 0 auto;
+  margin-left: 197px;
 }
 
 .exittracking-title_card {
@@ -61,6 +62,7 @@ ul li .fa-circle-xmark::after {
   height: 191px;
   background-color: #ffffff;
   border-radius: 15px;
+  margin-left: 197px;
 }
 
 .clearance-tracking__dept {
@@ -69,7 +71,8 @@ ul li .fa-circle-xmark::after {
   border-radius: 20px;
   background: linear-gradient(330deg, #fe8d79, #ff5276);
 
-  box-shadow: 20px -20px 71px #bcbcbc, -20px 20px 71px #ffffff;
+  box-shadow: 20px -20px 71px #bcbcbc,
+  22px -27px -13px #ffffff;
   transition: all 0.4s ease-in-out;
 }
 .clearance-tracking__dept:hover {
@@ -120,7 +123,7 @@ ul li .fa-circle-check::after {
     margin-left: 141px;
   } */
   .exittracking {
-    margin-left: 92px;
+    margin-left: 160px;
   }
 }
 @media screen and (max-width: 1000px) {

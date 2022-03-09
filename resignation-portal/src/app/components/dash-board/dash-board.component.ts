@@ -11,7 +11,7 @@ import { ResignationService } from 'src/services/resignation.service';
 })
 export class DashBoardComponent implements OnInit {
   public employeeDetail!: IEmployee;
-  public empName!: string;
+  public emp_Name!: string;
   public empNumber!: string;
   employeeExitDetails!: IEmployeeExitDetails;
 
@@ -24,7 +24,7 @@ export class DashBoardComponent implements OnInit {
     let LocalStorage_values = JSON.parse(
       localStorage.getItem('Employee_Details') || ''
     );
-    this.empName = LocalStorage_values.empName;
+    this.emp_Name = LocalStorage_values.empName;
     this.empNumber = LocalStorage_values.empNumber;
     this.fetchEmployeeDetails();
   }
@@ -33,16 +33,18 @@ export class DashBoardComponent implements OnInit {
    * Fetch employee details
    */
   fetchEmployeeDetails(): void {
-    let employeeDetails$ = this.resignationService.fetchEmployeeDetails(
-      this.empName
-    );
-    let employeeExitDetails$ =
-      this.resignationService.fetchEmployeeExitProgress(this.empNumber);
 
-    forkJoin([employeeDetails$, employeeExitDetails$]).subscribe((details) => {
-      this.employeeDetail = details[0];
-      this.employeeExitDetails = details[1];
-    });
+    this.resignationService.fetchEmployeeDetails(this.emp_Name).subscribe({
+      next: data=>{
+        this.employeeDetail=data;
+        this.resignationService.fetchEmployeeExitProgress(this.empNumber).subscribe({
+          next:(details)=>{
+            this.employeeExitDetails=details;
+          }
+        })
+      }
+    })
+
   }
 
   /**
