@@ -1,5 +1,7 @@
 
 
+<div *ngIf="isLoggedIn$|async">
+
 
 
 <div class="sidebar" [ngClass]="{ active: isSideBarActivated === true }">
@@ -27,9 +29,9 @@
       </a>
     </li>
     <li title="Exit-Tracker">
-      <a [routerLink]="'/logout'">
+      <a (click)="onLogout()">
         <i class="bx bx-exit"></i>
-        <span [routerLink]="'/logout'" class="links_name">Exit</span>
+        <span  class="links_name">Exit</span>
       </a>
     </li>
     <li title="Help">
@@ -47,3 +49,4 @@
   </div>
 </div>
 
+</div>

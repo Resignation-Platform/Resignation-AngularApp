@@ -5,6 +5,7 @@ import { AdmindashboardComponent } from './components/admindashboard/admindashbo
 import { DashBoardComponent } from './components/dash-board/dash-board.component';
 import { ExittrackingComponent } from './components/exittracking/exittracking.component';
 import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 import { ResignationFormComponent } from './components/resignation-form/resignation-form.component';
 
@@ -15,7 +16,7 @@ const routes: Routes = [
   {path:'dashboard',component:DashBoardComponent},
   {path:'exit-tracking',component:ExittrackingComponent},
   {path:'seperation',component:ResignationFormComponent},
-
+  {path:'logout',component:LogoutComponent},
   {path:'admin', component:AdmindashboardComponent},
   { path: '**', component: LoginComponent},
 

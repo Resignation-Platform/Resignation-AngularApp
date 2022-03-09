@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Iservice } from './Iservice';
-import { from, Observable, of, throwError } from 'rxjs';
+import { BehaviorSubject, from, Observable, of, throwError } from 'rxjs';
 import { AdminDetails } from 'src/app/models/AdminDetails';
 import {
   IEmployee,
@@ -10,12 +10,15 @@ import {
   ISaveEmployeeDetails,
 } from 'src/app/model/employee';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ResignationService implements Iservice {
-  constructor(private http: HttpClient) {}
+
+  private loggedInSubj=new BehaviorSubject<boolean>(false);
+  constructor(private http: HttpClient,private router:Router) {}
 
   WebApi_Url = environment.ApiUrl;
   fetchFeedBackQuestions(): Observable<IFeedbackQuestions[]> {
@@ -93,4 +96,23 @@ export class ResignationService implements Iservice {
         AdminRole
     );
   }
+  get isLoggedIn() {
+    return this.loggedInSubj.asObservable();
+  }
+
+  UserLogin(empName:string,empNum:string){
+    if (empName!=='' && empNum!=='') {
+      this.loggedInSubj.next(true);
+    }
+    else{
+
+      this.router.navigate(['/login'])
+    }
+
+  }
+  userLogOut(){
+    this.loggedInSubj.next(false);
+    this.router.navigate(['/login'])
+  }
+
 }

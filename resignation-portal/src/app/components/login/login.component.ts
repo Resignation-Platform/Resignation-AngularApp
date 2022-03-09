@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit,OnChanges {
           localStorage.removeItem('Employee_Details');
           localStorage.setItem('Employee_Details', JSON.stringify(details));
           this.route.navigateByUrl('/dashboard');
+          this.service.UserLogin(data.email,data.employeeNumber);
        },
        error:(err)=>{
         this.route.navigateByUrl('/login');
@@ -58,6 +59,6 @@ export class LoginComponent implements OnInit,OnChanges {
     });
 
   }
-  fetchExitEmployeeDetails() {}
+
 
 }
