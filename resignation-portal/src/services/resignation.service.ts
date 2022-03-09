@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Iservice } from './Iservice';
-import { from, Observable, of, throwError } from 'rxjs';
-import { AdminDetails } from 'src/app/models/AdminDetails';
+import { Observable, of } from 'rxjs';
 import {
+  IAdminDetails,
   IEmployee,
   IEmployeeExitDetails,
   IFeedbackQuestions,
@@ -84,8 +84,8 @@ export class ResignationService implements Iservice {
   fetchDetailsForAdmins(
     AdminEmployeeNumber: string,
     AdminRole: string
-  ): Observable<any> {
-    return this.http.get(
+  ): Observable<IAdminDetails[]> {
+    return this.http.get<IAdminDetails[]>(
       this.WebApi_Url +
         '/Admin?AdminEmpNo=' +
         AdminEmployeeNumber +

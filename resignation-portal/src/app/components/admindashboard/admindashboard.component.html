@@ -1,40 +1,48 @@
-<div class="dashboard-title"><h4>Approval Assigned To Me</h4></div>
-<div class="container admin-dashboard">
-<div *ngIf="AdminDetails_List.length==0; else idtable">No data</div>
-<ng-template #idtable>
-  <table class="table table-bordered admin-details" >
-    <thead>
-      <tr>
-        <th>Employee Number</th>
-        <th>Employee EmailId</th>
-        <th>Personal Email</th>
-        <th>ContactNumber</th>
-        <th>Seperation Date</th>
-        <th>LastWorking Date</th>
-
-        <th>Action</th>
-      </tr>
-
-    </thead>
-    <tbody >
-
-      <tr *ngFor="let data of AdminDetails_List">
-        <td>{{data.EmployeeNo}}</td>
-        <td>{{data.EmployeeEmailId}}</td>
-        <td>{{data.EmployeePersonalEmailid}}</td>
-        <td>{{data.EmployeeContact}}</td>
-        <td>{{data.SeperationDate}}</td>
-        <td>{{data.LastWorkingDate}}</td>
-        <td>
-          <button class="btn" (click)="onUpdateRequest(data.EmployeeNo)">
-            <i class='bx bx-check'></i></button>
-        </td>
-      </tr>
-
-    </tbody>
-
-  </table>
-</ng-template>
-
-
+<div class="admin-container">
+  <h4 class="admin-title">Approval Assigned To Me</h4>
+  <div class="">
+    <kendo-grid
+      [data]="gridView"
+      [pageSize]="pageSize"
+      [skip]="skip"
+      [pageable]="true"
+      [height]="400"
+      (pageChange)="pageChange($event)"
+    >
+      <kendo-grid-column [width]="100" field="employeeNo" title="Number">
+      </kendo-grid-column>
+      <kendo-grid-column field="employeeEmailId" title="Mail Id">
+      </kendo-grid-column>
+      <kendo-grid-column
+        field="employeePersonalEmailid"
+        title="Personal Mail Id"
+      >
+      </kendo-grid-column>
+      <kendo-grid-column
+        [width]="150"
+        field="employeeContact"
+        title="Contact No"
+      >
+      </kendo-grid-column>
+      <kendo-grid-column
+        [width]="160"
+        field="seperationDate"
+        title="Separation Date"
+      >
+      </kendo-grid-column>
+      <kendo-grid-column
+        [width]="160"
+        field="lastWorkingDate"
+        title="Last Working Date"
+      >
+      </kendo-grid-column>
+      <kendo-grid-column [width]="160">
+        <ng-template kendoGridCellTemplate let-dataItem>
+          <button class="approve-btn" (click)="updateExitApproval(dataItem)">
+            approve
+          </button>
+        </ng-template>
+      </kendo-grid-column>
+    </kendo-grid>
+  </div>
 </div>

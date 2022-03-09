@@ -42,3 +42,12 @@ export interface IFeedbackQuestions {
   id: number;
   question: string;
 }
+
+export interface IAdminDetails {
+  employeeNo: string;
+  employeeEmailId: string;
+  employeePersonalEmailid: string;
+  employeeContact: string;
+  seperationDate: string;
+  lastWorkingDate: string;
+}
