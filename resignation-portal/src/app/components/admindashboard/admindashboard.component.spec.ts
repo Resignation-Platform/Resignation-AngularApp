@@ -44,11 +44,10 @@ describe('AdmindashboardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should get value of empName and empNumber from local storage on calling ngOnInit', () => {
+  it('should get value of userRole from local storage on calling ngOnInit', () => {
     component.ngOnInit();
     expect(component.UserRole).toBe('developer');
   });
-
 
   it('should call the fetchAdminDetails with empNumber and empRole on calling ngOnInit', () => {
     const spyFetchEmployeeDetails = spyOn(component, 'fetchAdminDetails');

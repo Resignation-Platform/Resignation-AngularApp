@@ -6,6 +6,8 @@ import { DashBoardComponent } from './dash-board.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { EmployeeMockData } from 'src/app/mockData/employeeData';
 import { of } from 'rxjs';
+import { Router } from '@angular/router';
+import { RouterMock } from 'src/app/mockData/routeMock';
 
 describe('DashBoardComponent', () => {
   let component: DashBoardComponent;
@@ -13,6 +15,7 @@ describe('DashBoardComponent', () => {
   let injector: Injector;
   let resignationService: ResignationService;
   let employeeData: EmployeeMockData;
+  let route: Router;
   const details = {
     empNumber: '77723',
     empName: 'Test User',
@@ -23,13 +26,18 @@ describe('DashBoardComponent', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule],
       declarations: [DashBoardComponent],
-      providers: [ResignationService, EmployeeMockData],
+      providers: [
+        ResignationService,
+        EmployeeMockData,
+        { provide: Router, useClass: RouterMock },
+      ],
     });
     fixture = TestBed.createComponent(DashBoardComponent);
     component = fixture.componentInstance;
     injector = fixture.debugElement.injector;
     resignationService = injector.get(ResignationService);
     employeeData = injector.get(EmployeeMockData);
+    route = injector.get(Router);
     localStorage.setItem('Employee_Details', JSON.stringify(details));
     component.employeeDetail = employeeData.employeeDetails;
     fixture.detectChanges();
@@ -89,5 +97,11 @@ describe('DashBoardComponent', () => {
     expect(component.employeeExitDetails).toEqual(
       employeeData.employeeExitDetails
     );
+  });
+
+  it('shoulc call navigate of router on calling initiateNavigation', () => {
+    const spyNavigate = spyOn(route, 'navigate');
+    component.initiateNavigation('admin');
+    expect(spyNavigate).toHaveBeenCalledWith(['/admin']);
   });
 });

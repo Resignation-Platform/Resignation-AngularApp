@@ -2,9 +2,11 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Injector } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, throwError } from 'rxjs';
 import { EmployeeMockData } from 'src/app/mockData/employeeData';
+import { RouterMock } from 'src/app/mockData/routeMock';
 import { ResignationService } from 'src/services/resignation.service';
 import { ResignationFormComponent } from './resignation-form.component';
 
@@ -14,6 +16,7 @@ describe('RegistrationFormComponent', () => {
   let injector: Injector;
   let resignationService: ResignationService;
   let employeeData: EmployeeMockData;
+  let route: Router;
   const details = {
     empNumber: '77723',
     empName: 'Test User',
@@ -24,13 +27,19 @@ describe('RegistrationFormComponent', () => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, RouterTestingModule],
       declarations: [ResignationFormComponent],
-      providers: [ResignationService, EmployeeMockData, FormBuilder],
+      providers: [
+        ResignationService,
+        EmployeeMockData,
+        FormBuilder,
+        { provide: Router, useClass: RouterMock },
+      ],
     });
     fixture = TestBed.createComponent(ResignationFormComponent);
     component = fixture.componentInstance;
     injector = fixture.debugElement.injector;
     resignationService = injector.get(ResignationService);
     employeeData = injector.get(EmployeeMockData);
+    route = injector.get(Router);
     localStorage.setItem('Employee_Details', JSON.stringify(details));
     fixture.detectChanges();
   });
@@ -263,12 +272,14 @@ describe('RegistrationFormComponent', () => {
     );
     component.resignationForm.controls['contactNumber'].setValue('99394243942');
     component.feedbackQuestions = employeeData.feedbackQuestions;
+    const spyNavigate = spyOn(route, 'navigate');
     const spySaveExitEmployeeDetails = spyOn(
       resignationService,
       'saveExitEmployeeDetails'
     ).and.returnValue(of('saved'));
     component.saveResignationInformation();
     expect(spySaveExitEmployeeDetails).toHaveBeenCalled();
+    expect(spyNavigate).toHaveBeenCalled();
   });
 
   it(`should show alert if saveExitEmployeeDetails of resignationService returns error
