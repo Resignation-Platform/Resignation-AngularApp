@@ -42,7 +42,7 @@ describe('DashBoardComponent', () => {
     };
     localStorage.setItem('Employee_Details', JSON.stringify(details));
     component.ngOnInit();
-    expect(component.empName).toBe('Test User');
+    expect(component.emp_Name).toBe('Test User');
     expect(component.empNumber).toBe('77723');
     localStorage.clear();
   });

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+
 import { AdmindashboardComponent } from './admindashboard.component';
 
 describe('AdmindashboardComponent', () => {
@@ -8,7 +9,8 @@ describe('AdmindashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdmindashboardComponent ]
+      declarations: [ AdmindashboardComponent ],
+
     })
     .compileComponents();
   });
@@ -22,4 +24,7 @@ describe('AdmindashboardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+
 });

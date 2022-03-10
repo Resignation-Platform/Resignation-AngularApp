@@ -1,0 +1,120 @@
+employee table :                                Roles table:                                    department
+                                                        id:                                             id:
+                                                        Role:"User,IT,manager"                          departmentName: eng, it n finance
+                empno,                                  department foreign key of departbl
+                empId,
+                empname,
+                address,
+                contactNumber,
+                dtofJoining,
+                isConfirmed,
+                Status,
+
+
+                
+ employeeDetails table :
+                empno primarykey,                 
+                role,
+                joblevel,
+                projectManagerEmpNo,
+                DeliveryHeadEmpNo,
+                HREmpNo,
+                department 
+                
+                
+                
+
+EmployeeExit details:      FeedbackCollectedduring Exit :                 FeedbackQuestions 
+
+                                            feedbackId,                   id,Question,options
+                                            QuestionId,
+                                            Answer
+    Employee No,                                               
+    EmployeeEmail,                        
+    EmployeePersonalEmailid,                     
+    EmployeeContactNumber,                  
+    SeperationDate,
+    LastworkingDate,
+    ClearnaceID foreignkey(),
+    isWithDrawn,
+    IsClosed,
+    feedbackId foreignKey,
+
+
+
+EmployeeClearance  details: 
+            
+            clearanceid int identity(1,1),
+            Employee No,
+            IsHrApproved,
+            IsPmApproed,
+            isDHApproved,
+            ITClearance,
+            FinanceClearance,
+            otherdeparmentsclearance,
+
+
+        *****************************************************************  Table Statements ****************************************************************
+
+            
+            create table [Employee](
+                id int identity(1,1) PRIMARY KEY,
+                txtEmpno varchar(8),
+                txtEmpEmailId varchar(255),
+                txtEmpAddress varchar(255),
+                txtEmpContact char(13),
+                dateOfJoining date,
+                flgisConfirmed char(1),
+                txtstatus varchar(20)
+            )
+
+            create table EmpRoles(
+                id int identity(1,1) PRIMARY KEY,
+                txtRole varchar(8),
+                deptid int identity(1,1) FOREIGN KEY REFERENCES EmpDepartment(id)
+            )
+
+            create table EmpDepartment(
+                id int identity(1,1),
+                txtDepartment varchar(20)
+            )
+
+            create table EmployeeDetails (
+                empno int PRIMARY KEY,
+                introle int,
+                intJoblevel int,
+                intprojectManagerEmpNo int,
+                intDeliveryHeadEmpNo int,
+                intHREmpNo int,
+                intDepartment int FOREIGN KEY REFERENCES EmpDepartment(id)
+            )
+
+            create table EmployeeExitdetails(
+                txtEmployeeNo varchar(8),
+                txtEmpEmailId varchar(255),
+                txtEmpPersonalEmailid varchar(255),
+                txtEmpContact char(13),
+                dtSeperationDate datetime,
+                dtLastWorkingDate datetime,
+                intClearanceid FOREIGN KEY REFERENCES EmployeeClearance(clearanceid),
+                flgIsWithdrawn char(1),
+                flgisClosed char(1),
+                intfeedbackId int FOREIGN KEY FOREIGN KEY REFERENCES ExitQuestions(intId)
+            )
+
+            
+            create table ExitFeedback(
+                intfeedbackId int identity(1,1) FOREIGN KEY REFERENCES ExitQuestions(intId),
+                intQuestion int,
+                txtAnswer varchar(255),
+            
+            )
+            create table ExitQuestions(
+                intId int identity(1,1) PRIMARY KEY,
+                txtQuestion varchar(255),
+                txtOptions varchar(255)
+            
+            )
+
+                
+            
