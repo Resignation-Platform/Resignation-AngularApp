@@ -37,25 +37,12 @@ describe('SidebarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // it('should get value of empRole from local storage on calling ngOnInit', () => {
-  //   component.ngOnInit();
-  // });
 
   it('should call the confirmIsAdmin with empRole on calling ngOnInit', () => {
     //With User role HR
     const spyConfirmIsAdminHR = spyOn(component, 'confirmIsAdmin');
     component.ngOnInit();
     expect(spyConfirmIsAdminHR).toHaveBeenCalledWith('HR');
-
-    //With User role PM
-    const spyConfirmIsAdminPM = spyOn(component, 'confirmIsAdmin');
-    component.ngOnInit();
-    expect(spyConfirmIsAdminPM).toHaveBeenCalledWith('PM');
-
-    //With User role DH
-    const spyConfirmIsAdminDH = spyOn(component, 'confirmIsAdmin');
-    component.ngOnInit();
-    expect(spyConfirmIsAdminDH).toHaveBeenCalledWith('DH');
   });
 
   it('Should set isAdmin to true if user is HR or PM or DH on calling confirmIsAdmin', () => {
@@ -70,6 +57,12 @@ describe('SidebarComponent', () => {
     // User is role is DH
     component.confirmIsAdmin("DH");
     expect(component.isAdmin).toBe(true);
+  });
+
+  it('Should set isAdmin to false if user is not HR or PM or DH on calling confirmIsAdmin', () => {
+    // User is role is HR
+    component.confirmIsAdmin("developer");
+    expect(component.isAdmin).toBe(false);
   });
 
   it('Should toggle isSideBarActivated to true or false on calling onExpandSidebar', () => {
@@ -89,6 +82,7 @@ describe('SidebarComponent', () => {
       service,
       'userLogOut'
     )
+    component.onLogout();
     expect(spyUserLogout).toHaveBeenCalled();
   })
 
