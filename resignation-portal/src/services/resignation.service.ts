@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class ResignationService implements Iservice {
-  private loggedInSubj = new BehaviorSubject<boolean>(false);
+  public loggedInSubj = new BehaviorSubject<boolean>(false);
   constructor(private http: HttpClient, private router: Router) {}
 
   WebApi_Url = environment.ApiUrl;

@@ -1,3 +1,5 @@
+import { IEmployeeExitDetails, ISaveEmployeeDetails } from "../model/employee";
+
 export class EmployeeMockData {
   public employeeDetails = {
     employeeNumber: '756743',
@@ -10,6 +12,7 @@ export class EmployeeMockData {
     programManagerName: 'testpmname',
     deliveryLeaderName: 'testdeliveryname',
   };
+
 
   public employeeExitDetails = {
     employeeNumber: '756743',
@@ -55,4 +58,16 @@ export class EmployeeMockData {
       question: 'what is the reason the resignation?',
     },
   ];
+
+
+
+  public employeeSaveDetails:ISaveEmployeeDetails={
+    employeeNumber: '756743',
+    mailId: 'test@gmail.com',
+    personalEmailId: 'testpersonal@gmail.com',
+    contactNumber: '584399933',
+    feedbacks:[]
+  }
 }
+
+
