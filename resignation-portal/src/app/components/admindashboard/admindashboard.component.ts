@@ -9,7 +9,7 @@ import { ResignationService } from 'src/services/resignation.service';
   styleUrls: ['./admindashboard.component.css'],
 })
 export class AdmindashboardComponent implements OnInit {
-  public approvalDetail: IAdminDetails[] = [];
+  public approvalDetails: IAdminDetails[] = [];
   public gridView!: GridDataResult;
   public pageSize = 10;
   public skip = 0;
@@ -31,15 +31,15 @@ export class AdmindashboardComponent implements OnInit {
     this.service
       .fetchDetailsForAdmins(AdminEmployeeNo, adminRole)
       .subscribe((approvalDetails) => {
-        this.approvalDetail = approvalDetails;
+        this.approvalDetails = approvalDetails;
         this.setGridData();
       });
   }
 
   setGridData(): void {
     this.gridView = {
-      data: this.approvalDetail.slice(this.skip, this.skip + this.pageSize),
-      total: this.approvalDetail.length,
+      data: this.approvalDetails.slice(this.skip, this.skip + this.pageSize),
+      total: this.approvalDetails.length,
     };
   }
 
@@ -51,15 +51,12 @@ export class AdmindashboardComponent implements OnInit {
   updateExitApproval(data: IAdminDetails): void {
     this.service
       .updateAdminAcceptance(data.employeeNo, this.UserRole)
-      .subscribe({
-        // show the popup message
-        next: (msg: any) => console.log(msg),
-        error: (err: any) => console.log(err),
+      .subscribe((x) => {
+        const index = this.approvalDetails.findIndex(
+          (x) => x.employeeNo === data.employeeNo
+        );
+        this.approvalDetails.splice(index, 1);
+        this.setGridData();
       });
-    const index = this.approvalDetail.findIndex(
-      (x) => x.employeeNo === data.employeeNo
-    );
-    this.approvalDetail.splice(0, 1);
-    this.setGridData();
   }
 }
