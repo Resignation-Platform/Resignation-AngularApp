@@ -8,7 +8,7 @@ import { ResignationService } from 'src/services/resignation.service';
 
 import { ExittrackingComponent } from './exittracking.component';
 
-fdescribe('ExittrackingComponent', () => {
+describe('ExittrackingComponent', () => {
   let component: ExittrackingComponent;
   let fixture: ComponentFixture<ExittrackingComponent>;
   let injector:Injector;

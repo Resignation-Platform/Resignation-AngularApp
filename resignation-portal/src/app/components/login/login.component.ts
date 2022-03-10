@@ -8,7 +8,7 @@ import { ResignationService } from 'src/services/resignation.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit,OnChanges {
+export class LoginComponent  {
 
   model: any = {};
 
@@ -17,20 +17,13 @@ export class LoginComponent implements OnInit,OnChanges {
 
   ];
   constructor(private service: ResignationService, private route: Router) {}
-  ngOnChanges(changes: SimpleChanges): void {
 
 
-  }
-  ngOnInit(): void {
-  }
 
-  checkEmployeeList(){
-    console.log('calling array length')
-    return this.employeeDetails_list.length>0
-  }
 
   onSubmit() {
     let employee_Name = this.model.emailid;
+    console.log(employee_Name);
     this.fetchEmployeeDetails(employee_Name);
   }
 
