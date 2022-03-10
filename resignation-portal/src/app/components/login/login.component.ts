@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit,OnChanges {
 
   model: any = {};
 
+
   employeeDetails_list: IEmployee[] = [
 
   ];

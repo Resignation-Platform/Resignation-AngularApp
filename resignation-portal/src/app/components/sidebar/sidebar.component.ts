@@ -18,6 +18,7 @@ export class SidebarComponent implements OnInit {
 
   }
 
+
   ngOnInit(): void {
 
    this.isLoggedIn$= this.service.isLoggedIn;
@@ -26,6 +27,8 @@ export class SidebarComponent implements OnInit {
   );
     this.confirmIsAdmin(LocalStorage_values.empRole)
   }
+
+
   confirmIsAdmin(role:string){
     if (role?.toUpperCase()==='HR'|| role?.toUpperCase()==='PM'|| role?.toUpperCase()==='DH') {
         this.isAdmin=true;
