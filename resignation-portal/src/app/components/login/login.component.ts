@@ -19,14 +19,11 @@ export class LoginComponent implements OnInit,OnChanges {
   constructor(private service: ResignationService, private route: Router) {}
   ngOnChanges(changes: SimpleChanges): void {
 
-    this.onLogout();
+
   }
   ngOnInit(): void {
   }
-  onLogout(){
 
-    this.employeeDetails_list=[];
-  }
   checkEmployeeList(){
     console.log('calling array length')
     return this.employeeDetails_list.length>0

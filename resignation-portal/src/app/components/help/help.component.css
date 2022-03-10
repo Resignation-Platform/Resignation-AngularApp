@@ -2,3 +2,14 @@
 
   margin: 140px 130px;
 }
+.feature-changes{
+  margin: 24px 188px;
+  width: 53%;
+    background: #fff;
+    border-radius: 18px;
+    padding: 30px 64px;
+}
+
+.feature-changes li{
+  list-style:decimal-leading-zero;
+}
