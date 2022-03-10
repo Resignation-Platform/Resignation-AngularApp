@@ -36,4 +36,23 @@ export class EmployeeMockData {
       lastWorkingDate: '24-07-2020',
     },
   ];
+
+  public feedbackQuestions = [
+    {
+      id: 1,
+      question: 'what is the reason the resignation?',
+    },
+    {
+      id: 2,
+      question: 'Do you have any other offer?',
+    },
+    {
+      id: 3,
+      question: 'What could be changed in the organaisation?',
+    },
+    {
+      id: 4,
+      question: 'what is the reason the resignation?',
+    },
+  ];
 }

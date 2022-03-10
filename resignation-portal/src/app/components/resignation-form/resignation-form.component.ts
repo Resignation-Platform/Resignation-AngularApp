@@ -133,7 +133,10 @@ export class ResignationFormComponent implements OnInit, OnChanges {
    * @returns - the form array of feedback controls
    */
   createArrayOfFeedbackFormControls(): FormArray | null {
-    if (this.screenType !== 'exitTracking') {
+    if (
+      this.screenType !== 'exitTracking' &&
+      this.feedbackQuestions?.length > 0
+    ) {
       const controls = this.feedbackQuestions.map((question) => {
         return this.formBuilder.control('');
       });
