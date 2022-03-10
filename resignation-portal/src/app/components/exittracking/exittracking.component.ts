@@ -13,12 +13,13 @@ export class ExittrackingComponent implements OnInit {
   show=0;
   Employee_Details$!:IEmployee;
   Employee_ExitProgress$!:IEmployeeExitProgress;
+  LocalStorgage:any;
 
   ngOnInit(): void {
     let LocalStorage_values = JSON.parse(
       localStorage.getItem('Employee_Details') || ''
     );
-
+      this.LocalStorgage=LocalStorage_values;
    this.fetchEmployeeDetails(LocalStorage_values.empName);
    this.fetchEmployeeExitProgress(LocalStorage_values.empNumber);
 

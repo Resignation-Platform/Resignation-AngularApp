@@ -9,7 +9,7 @@ import { ResignationService } from 'src/services/resignation.service';
 
 import { AdmindashboardComponent } from './admindashboard.component';
 
-describe('AdmindashboardComponent', () => {
+fdescribe('AdmindashboardComponent', () => {
   let component: AdmindashboardComponent;
   let fixture: ComponentFixture<AdmindashboardComponent>;
   let injector: Injector;
@@ -48,6 +48,7 @@ describe('AdmindashboardComponent', () => {
     component.ngOnInit();
     expect(component.UserRole).toBe('developer');
   });
+
 
   it('should call the fetchAdminDetails with empNumber and empRole on calling ngOnInit', () => {
     const spyFetchEmployeeDetails = spyOn(component, 'fetchAdminDetails');
@@ -88,7 +89,7 @@ describe('AdmindashboardComponent', () => {
     expect(spySetGridData).toHaveBeenCalled();
   });
 
-  it(`should call updateAdminAcceptance method of resignationService 
+  it(`should call updateAdminAcceptance method of resignationService
   on calling updateExitApproval`, () => {
     const spyUpdateAdminAcceptance = spyOn(
       resignationService,
