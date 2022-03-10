@@ -7,7 +7,7 @@ import { IEmployee } from './model/employee';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'e-Seperation';
+  title = 'resignation-portal';
   employee_details:IEmployee[]=[];
 
 }

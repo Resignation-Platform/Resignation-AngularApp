@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ResignationService } from 'src/services/resignation.service';
+
 
 @Component({
   selector: 'app-logout',
@@ -9,12 +8,11 @@ import { ResignationService } from 'src/services/resignation.service';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor(private service:ResignationService,private router:Router) { }
+  constructor() { }
 
   ngOnInit(): void {
 
-    this.service.userLogOut();
-    this.router.navigateByUrl('/login')
+
   }
 
 }

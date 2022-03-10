@@ -49,6 +49,7 @@ describe('AdmindashboardComponent', () => {
     expect(component.UserRole).toBe('developer');
   });
 
+
   it('should call the fetchAdminDetails with empNumber and empRole on calling ngOnInit', () => {
     const spyFetchEmployeeDetails = spyOn(component, 'fetchAdminDetails');
     component.ngOnInit();
@@ -88,7 +89,7 @@ describe('AdmindashboardComponent', () => {
     expect(spySetGridData).toHaveBeenCalled();
   });
 
-  it(`should call updateAdminAcceptance method of resignationService 
+  it(`should call updateAdminAcceptance method of resignationService
   on calling updateExitApproval`, () => {
     const spyUpdateAdminAcceptance = spyOn(
       resignationService,
