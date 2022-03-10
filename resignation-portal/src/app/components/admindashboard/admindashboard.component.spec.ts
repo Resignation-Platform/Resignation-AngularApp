@@ -9,7 +9,7 @@ import { ResignationService } from 'src/services/resignation.service';
 
 import { AdmindashboardComponent } from './admindashboard.component';
 
-fdescribe('AdmindashboardComponent', () => {
+describe('AdmindashboardComponent', () => {
   let component: AdmindashboardComponent;
   let fixture: ComponentFixture<AdmindashboardComponent>;
   let injector: Injector;
