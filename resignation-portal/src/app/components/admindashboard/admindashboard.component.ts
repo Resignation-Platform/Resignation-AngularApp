@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 import { IAdminDetails } from 'src/app/model/employee';
 import { ResignationService } from 'src/services/resignation.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admindashboard',
@@ -52,6 +53,7 @@ export class AdmindashboardComponent implements OnInit {
     this.service
       .updateAdminAcceptance(data.employeeNo, this.UserRole)
       .subscribe((x) => {
+          Swal.fire('Approval  taken into consideration')
         const index = this.approvalDetails.findIndex(
           (x) => x.employeeNo === data.employeeNo
         );

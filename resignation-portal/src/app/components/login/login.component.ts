@@ -36,7 +36,7 @@ export class LoginComponent  {
           this.employeeDetails_list.push(data);
           let details = {
             empNumber: data.employeeNumber,
-            empName: data.email.split('@')[0],
+            empName: data.email,
             empRole:data.role
           };
           localStorage.removeItem('Employee_Details');

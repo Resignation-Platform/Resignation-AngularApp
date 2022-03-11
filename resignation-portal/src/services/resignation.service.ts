@@ -50,8 +50,11 @@ export class ResignationService implements Iservice {
   ): Observable<any> {
     return this.http.post(
       this.WebApi_Url + '/Employees/',
-      employeeeExitDetails
-    );
+      employeeeExitDetails,
+      {
+        responseType:'text'
+      }
+    )
   }
 
   fetchEmployeeExitProgress(
@@ -67,15 +70,18 @@ export class ResignationService implements Iservice {
   updateAdminAcceptance(
     ExitEmployeeNumber: string,
     AdminRole: string
-  ): Observable<string> {
+  ): Observable<any> {
     let approval_obj = {
       ExitEmpNo: ExitEmployeeNumber,
       AdminRole: AdminRole,
     };
 
-    return this.http.put<any>(
+    return this.http.put(
       this.WebApi_Url + '/Employees/AdminApprovals',
-      approval_obj
+      approval_obj,
+      {
+        responseType:'text'
+      }
     );
   }
 
