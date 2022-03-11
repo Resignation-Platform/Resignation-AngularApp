@@ -41,8 +41,8 @@
       </ng-template>
       </kendo-grid-column>
       <kendo-grid-column [width]="160">
-        <ng-template kendoGridCellTemplate let-dataItem>
-          <button class="approve-btn" (click)="updateExitApproval(dataItem)">
+        <ng-template kendoGridCellTemplate let-dataItem >
+          <button class="approve-btn" (click)="updateExitApproval(dataItem)" [disabled]="dataItem.isHrApproved==='0' && UserRole!=='HR'" >
             approve
           </button>
         </ng-template>

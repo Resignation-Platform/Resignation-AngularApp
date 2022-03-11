@@ -64,7 +64,7 @@ describe('LoginComponent', () => {
     let LocalStorage_values = JSON.parse(
       localStorage.getItem('Employee_Details') || ''
     );
-    expect(LocalStorage_values.empName).toEqual('test');
+    expect(LocalStorage_values.empName).toEqual('test@gmail.com');
     expect(spyServiceFetchEmployee).toHaveBeenCalled();
     expect(component.employeeDetails_list).toEqual([employee_Mockdata.employeeDetails])
     expect(spyUserLogin).toHaveBeenCalled()

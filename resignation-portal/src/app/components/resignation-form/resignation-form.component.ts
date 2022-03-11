@@ -8,6 +8,7 @@ import {
   ISaveEmployeeDetails,
 } from 'src/app/model/employee';
 import { ResignationService } from 'src/services/resignation.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-resignation-form',
@@ -177,6 +178,11 @@ export class ResignationFormComponent implements OnInit, OnChanges {
       .saveExitEmployeeDetails(resignationDetailsPayload)
       .subscribe({
         next: (x) => {
+          Swal.fire(`
+          <div style='text-align:center;font-size:14px'>
+            <p>your seperation has been initiated</p>
+          </div>
+          `)
           this.route.navigate(['/exit-tracking']);
         },
         error: () => {

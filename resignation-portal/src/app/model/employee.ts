@@ -64,4 +64,5 @@ export interface IAdminDetails {
   employeeContact: string;
   seperationDate: string;
   lastWorkingDate: string;
+  isHrApproved:string;
 }

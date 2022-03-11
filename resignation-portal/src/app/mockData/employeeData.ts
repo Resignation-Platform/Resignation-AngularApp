@@ -37,6 +37,7 @@ export class EmployeeMockData {
       employeeContact: '5949292',
       seperationDate: '24-05-2020',
       lastWorkingDate: '24-07-2020',
+      isHrApproved:'0'
     },
   ];
 

@@ -18,3 +18,8 @@
   font-weight: 600;
   margin-left: 25px;
 }
+.approve-btn:disabled{
+  background: grey;
+  color: white;
+
+}

@@ -37,7 +37,7 @@ export class LoginComponent  {
           let details = {
             empNumber: data.employeeNumber,
             empName: data.email,
-            empRole:data.role
+            empRole:data.role.toUpperCase()
           };
           localStorage.removeItem('Employee_Details');
           localStorage.setItem('Employee_Details', JSON.stringify(details));

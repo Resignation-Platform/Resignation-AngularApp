@@ -59,7 +59,7 @@ form{
 	border-radius: 0;
 	border-bottom: 1px solid #aaa;
 	padding: 1em .5em .5em;
-	padding-left: 2em;
+	padding-left: 2px;
 	outline:none;
 	margin:1.5em auto;
 	transition: all .5s ease;

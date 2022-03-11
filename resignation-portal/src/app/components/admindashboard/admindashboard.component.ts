@@ -21,7 +21,7 @@ export class AdmindashboardComponent implements OnInit {
     let LocalStorage_values = JSON.parse(
       localStorage.getItem('Employee_Details') || ''
     );
-    this.UserRole = LocalStorage_values.empRole;
+    this.UserRole = (LocalStorage_values.empRole);
     this.fetchAdminDetails(
       LocalStorage_values.empNumber,
       LocalStorage_values.empRole
@@ -53,7 +53,14 @@ export class AdmindashboardComponent implements OnInit {
     this.service
       .updateAdminAcceptance(data.employeeNo, this.UserRole)
       .subscribe((x) => {
-          Swal.fire('Approval  taken into consideration')
+
+
+        Swal.fire(`
+          <div style='text-align:center; font-size:14px'>
+            <p>Approval  taken into consideration</p>
+          </div>
+          `)
+
         const index = this.approvalDetails.findIndex(
           (x) => x.employeeNo === data.employeeNo
         );
