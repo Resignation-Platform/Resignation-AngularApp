@@ -1,39 +1,81 @@
 create table [Employee]
 (
-            id int identity(1,1) PRIMARY KEY,
-            txtEmpno varchar(8),
+            intEmpno number(8) identity(1,1) PRIMARY KEY,
+            txtEmpName varchar(255),
             txtEmpEmailId varchar(255),
             txtEmpAddress varchar(255),
             txtEmpContact char(13),
             dateOfJoining date,
             flgisConfirmed char(1),
-            txtstatus varchar(20)
- )
+            txtstatus varchar(20),
 
-
- create table EmpDepartment
- (
-            id int identity(1,1) primary key,
-            txtDepartment varchar(20)
-  )
-
- create table EmpRoles
-(
-            id int identity(1,1) PRIMARY KEY,
-            txtRole varchar(8),
-            deptid int  FOREIGN KEY REFERENCES EmpDepartment(id)
- )
-
- create table EmployeeDetails
- (
-            empno int PRIMARY KEY,
-            introle int,
+            introle int FOREIGN key REFERENCES EmpRoles(id),
             txtJoblevel varchar(5),
             txtprojectManagerEmpNo varchar(8),
             txtDeliveryHeadEmpNo varchar(8),
             txtHREmpNo varchar(8),
-            intDepartment int FOREIGN KEY REFERENCES EmpDepartment(id)
-  )
+
+ )
+
+
+
+
+ create table EmpRoles
+(
+            id int identity(1,1) PRIMARY KEY,
+            txtRole varchar(15),
+            txtDeptName  varchar(20)
+ )
+
+        create table EmployeeClearance
+		    (
+			intid int identity(1,1) primary key,
+			txtEmpNo varchar(8),
+
+
+        )
+	    	create table EmployeeExitdetails
+		    (
+            intEmployeeNo number(8) primary key FOREIGN key REFERENCES Employee(intEmpno) ,
+            txtEmpPersonalEmailid varchar(255),
+            dtSeperationDate datetime,
+            dtLastWorkingDate datetime,
+            intfeedbackId int  FOREIGN KEY REFERENCES ExitFeedback(intfeedbackId),
+            flgIsHrApproved char(1),
+            flgIsPmApproed   char(1),
+            flgisDHApproved char(1),
+            flgITClearance char(1),
+            flgFinanceClearance char(1),
+            flgIsWithdrawn char(1),
+            flgisExitCompleted char(1),
+
+        )
+        create table ExitFeedback
+		    (
+            intfeedbackId int identity(1,1) primary key,
+            txtQuestion nvarchar(max) ,
+        )
+
+
+
+----- will use Document db like firebase/AWS for questions.
+        -- create table ExitQuestions
+	      -- (
+        --     intId int identity(1,1) PRIMARY KEY,
+        --     txtQuestion varchar(255),
+        --     txtOptions varchar(255)
+
+        -- )
+
+
+--  create table EmpDepartment
+--  (
+--             id int identity(1,1) primary key,
+--             txtDepartment varchar(20)
+--   )
+
+
+
 
 /**********************************************/
 		insert into [Employee]
@@ -80,44 +122,8 @@ create table [Employee]
 /**********************************************/
 /***************exit tables and feedback questions*****************/
 
-	  create table ExitQuestions
-	  (
-            intId int identity(1,1) PRIMARY KEY,
-            txtQuestion varchar(255),
-            txtOptions varchar(255)
 
-        )
-        create table ExitFeedback
-		(
-            intfeedbackId int identity(1,1) primary key,
-            txtQuestion nvarchar(max) ,
-            txtAnswer nvarchar(max),
 
-        )
-		create table EmployeeClearance
-		(
-			intid int identity(1,1) primary key,
-			txtEmpNo varchar(8),
-			flgIsHrApproved char(1),
-			flgIsPmApproed   char(1),
-			flgisDHApproved char(1),
-			flgITClearance char(1),
-			flgFinanceClearance char(1)
-
-        )
-		create table EmployeeExitdetails
-		(
-            txtEmployeeNo varchar(8) primary key,
-            txtEmpEmailId varchar(255),
-            txtEmpPersonalEmailid varchar(255),
-            txtEmpContact char(13),
-            dtSeperationDate datetime,
-            dtLastWorkingDate datetime,
-			intClearanceid int ,
-            flgIsWithdrawn char(1),
-            flgisClosed char(1),
-            intfeedbackId int  FOREIGN KEY REFERENCES ExitFeedback(intfeedbackId)
-        )
 
 /***************exit tables and feedback questions*****************/
 

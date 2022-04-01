@@ -22,9 +22,9 @@ export class LoginComponent  {
 
 
   onSubmit() {
-    let employee_Name = this.model.emailid;
-    console.log(employee_Name);
-    this.fetchEmployeeDetails(employee_Name);
+
+
+    this.fetchEmployeeDetails(this.model.emailid);
   }
 
   fetchEmployeeDetails(empName: string) {
@@ -37,7 +37,7 @@ export class LoginComponent  {
           let details = {
             empNumber: data.employeeNumber,
             empName: data.email,
-            empRole:data.role.toUpperCase()
+            empRole:data.role?.toUpperCase()
           };
           localStorage.removeItem('Employee_Details');
           localStorage.setItem('Employee_Details', JSON.stringify(details));
